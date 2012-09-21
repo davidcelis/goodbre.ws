@@ -26,4 +26,5 @@ group :development, :test do
   gem 'minitest-rails-capybara'
   gem 'miniskirt'
   gem 'pry-rails'
+  gem 'puma'
 end

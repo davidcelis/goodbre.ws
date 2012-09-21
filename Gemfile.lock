@@ -109,6 +109,8 @@ GEM
       slop (~> 3.3.1)
     pry-rails (0.2.2)
       pry (>= 0.9.10)
+    puma (1.6.3)
+      rack (~> 1.2)
     rack (1.4.1)
     rack-cache (1.2)
       rack (>= 0.4)
@@ -198,6 +200,7 @@ DEPENDENCIES
   pg
   pjax-rails
   pry-rails
+  puma
   rails (= 3.2.8)
   recommendable
   sass-rails
