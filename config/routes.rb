@@ -1,58 +1,59 @@
 Goodbrews::Application.routes.draw do
-  # The priority is based upon order of creation:
-  # first created -> highest priority.
+  root :to => 'dashboard#index', :constraints => lambda { |request| request.cookies['auth_token'] }
+  root :to => 'pages#welcome'
 
-  # Sample of regular route:
-  #   match 'products/:id' => 'catalog#view'
-  # Keep in mind you can assign values other than :controller and :action
+  resource :account, :controller => :account, :except => :show do
+    collection do
+      get  :sign_in, :controller  => :authentication, :action => :new, :as => :sign_in
+      post :sign_in, :controller  => :authentication, :action => :create
+      post :sign_out, :controller => :authentication, :action => :destroy, :as => :sign_out
 
-  # Sample of named route:
-  #   match 'products/:id/purchase' => 'catalog#purchase', :as => :purchase
-  # This route can be invoked with purchase_url(:id => product.id)
+      get  :ignored
+    end
+  end
 
-  # Sample resource route (maps HTTP verbs to controller actions automatically):
-  #   resources :products
+  resource :dashboard, :controller => :dashboard, :only => :index do
+    collection do
+      get '' => :index, :as => '' # Cool story, Rails
+      get :recommendations
+      get :likes
+      get :dislikes
+      get :fridge
+      get :similar
+    end
+  end
 
-  # Sample resource route with options:
-  #   resources :products do
-  #     member do
-  #       get 'short'
-  #       post 'toggle'
-  #     end
-  #
-  #     collection do
-  #       get 'sold'
-  #     end
-  #   end
+  resources :beers, :only => [] do
+    member do
+      post   :like
+      delete :like,    :action => :unlike,    :as => :unlike
+      post   :dislike
+      delete :dislike, :action => :undislike, :as => :undislike
+      post   :ignore
+      delete :ignore,  :action => :unignore,  :as => :unignore
+      post   :stash
+      delete :stash,   :action => :unstash,   :as => :unstash
+    end
+  end
 
-  # Sample resource route with sub-resources:
-  #   resources :products do
-  #     resources :comments, :sales
-  #     resource :seller
-  #   end
+  resources :breweries, :only => :show
 
-  # Sample resource route with more complex sub-resources
-  #   resources :products do
-  #     resources :comments
-  #     resources :sales do
-  #       get 'recent', :on => :collection
-  #     end
-  #   end
+  resources :users, :only => :show do
+    member do
+      get :recommendations
+      get :likes
+      get :dislikes
+      get :fridge
+      get :similar
+    end
+  end
 
-  # Sample resource route within a namespace:
-  #   namespace :admin do
-  #     # Directs /admin/products/* to Admin::ProductsController
-  #     # (app/controllers/admin/products_controller.rb)
-  #     resources :products
-  #   end
+  post :search, :controller => :searches, :action => :search, :as => :search
 
-  # You can have the root of your site routed with "root"
-  # just remember to delete public/index.html.
-  # root :to => 'welcome#index'
-
-  # See how all your routes lay out with "rake routes"
-
-  # This is a legacy wild controller route that's not recommended for RESTful applications.
-  # Note: This route will make all actions in every controller accessible via GET requests.
-  # match ':controller(/:action(/:id))(.:format)'
+  controller :pages do
+    get :welcome
+    get :about
+    get :privacy
+    get :terms
+  end
 end
