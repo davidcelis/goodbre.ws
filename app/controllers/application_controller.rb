@@ -2,6 +2,8 @@ class ApplicationController < ActionController::Base
   protect_from_forgery
   force_ssl
 
+  layout :set_layout
+
   private
 
   def current_user
@@ -17,4 +19,12 @@ class ApplicationController < ActionController::Base
   end
 
   helper_method :current_user, :signed_in?
+
+  def set_layout
+    if request.headers['X-PJAX']
+      false
+    else
+      'application'
+    end
+  end
 end
