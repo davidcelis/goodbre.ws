@@ -12,13 +12,15 @@
 #
 #= require jquery
 #= require jquery_ujs
-#  require pjax
+#= require pjax
 #= require twitter/bootstrap
 
 $ ->
   $("a[rel=popover]").popover()
   $(".tooltip").tooltip()
   $("a[rel=tooltip]").tooltip()
+
+  # $('a:not([data-remote]):not([data-behavior]):not([data-skip-pjax])').pjax('[data-pjax-container]');
 
   $('#beer-actions button').click ->
     action = $(this).data('action')

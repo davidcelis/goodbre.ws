@@ -14,7 +14,7 @@
         #header.container-fluid
           = render :partial => 'shared/header'
 
-    #application.row-fluid
+    #application.row-fluid{ :'data-pjax-container' => true }
       = yield
 
     #footer
