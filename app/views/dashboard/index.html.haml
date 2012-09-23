@@ -1,0 +1,38 @@
+= render :partial => 'sidebar'
+
+.span9
+  #content
+    %h1 Your Dashboard
+
+    %br/
+
+    .tabbable
+      %ul.nav.nav-tabs
+        %li#top-beers.active
+          = link_to 'Top 10 Beers', dashboard_path
+        %li#recommendations-tab
+          = link_to 'Recommendations', recommendations_dashboard_path
+        %li#likes-tab
+          = link_to 'Likes', likes_dashboard_path
+        %li#dislikes-tab
+          = link_to 'Dislikes', dislikes_dashboard_path
+        %li#fridge-tab
+          = link_to 'Fridge', fridge_dashboard_path
+        %li#similar-tab
+          = link_to 'Similar Users', similar_dashboard_path
+      .tab-content
+        #top-beers.tab-pane.active
+          %table.table.table-striped
+            %tr
+              %th Name
+              %th ABV
+              %th Style
+              %th Brewery
+              %th
+          - Beer.includes(:style, :brewery).top(10).each do |beer|
+            %tr
+              %td= beer.name
+              %td= beer.abv
+              %td= beer.style.name
+              %td= link_to beer.brewery.name, brewery_path(beer.brewery.permalink)
+              %td.pull-right= render :partial => 'beers/buttons', :locals => { :beer => beer }

@@ -39,9 +39,10 @@ $ ->
     klass = 'btn-primary' if action is 'stash'   or action is 'unstash'
     klass = 'btn-warning' if action is 'ignore'  or action is 'unignore'
 
-    $.ajax "/beers/#{id}/#{action}"
+    $.ajax("/beers/#{id}/#{action}",
       method: method
       success: =>
         $(this).toggleClass(klass)
         $(this).data('action', newAction)
       error: =>
+        console.log('hi'))

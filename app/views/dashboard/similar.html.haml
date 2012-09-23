@@ -1,0 +1,36 @@
+= render :partial => 'sidebar'
+
+.span9
+  #content
+    %h1 Your Dashboard
+
+    %br/
+
+    .tabbable
+      %ul.nav.nav-tabs
+        %li#top-beers
+          = link_to 'Top 10 Beers', dashboard_path
+        %li#recommendations-tab
+          = link_to 'Recommendations', recommendations_dashboard_path
+        %li#likes-tab
+          = link_to 'Likes', likes_dashboard_path
+        %li#dislikes-tab
+          = link_to 'Dislikes', dislikes_dashboard_path
+        %li#fridge-tab
+          = link_to 'Fridge', fridge_dashboard_path
+        %li#similar-tab.active
+          = link_to 'Similar Users', similar_dashboard_path
+      .tab-content
+        #similar-users.tab-pane.active
+          %table.table.table-striped
+            %tr
+              %th
+              %th Username
+              %th Likes
+              %th Dislikes
+          - current_user.similar_raters.each do |user|
+            %tr
+              %td
+              %td= link_to user.username user_path(user.username)
+              %td= user.liked_beers.count
+              %td= user.disliked_beers.count
