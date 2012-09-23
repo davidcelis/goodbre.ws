@@ -10,6 +10,7 @@ gem 'pjax-rails'
 gem 'haml'
 
 gem 'recommendable', :github => 'davidcelis/recommendable'
+gem 'kaminari'
 gem 'sidekiq'
 
 gem 'gravatar_image_tag'

@@ -6,9 +6,9 @@
         %th Username
         %th Likes
         %th Dislikes
-    - users.each do |user|
-      %tr
-        %td= gravatar_image_tag(user.email, :size => 50)
-        %td= link_to user.username user_path(user.username)
-        %td= user.liked_beers.count
-        %td= user.disliked_beers.count
+      - users.each do |user|
+        %tr
+          %td= gravatar_image_tag(user.email, :size => 50)
+          %td= link_to user.username user_path(user.username)
+          %td= user.liked_beers.count
+          %td= user.disliked_beers.count

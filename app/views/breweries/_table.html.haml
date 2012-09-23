@@ -5,8 +5,8 @@
         %th Name
         %th Beers
         %th Website
-    - breweries.each do |brewery|
-      %tr
-        %td= link_to brewery.name, brewery_path(brewery)
-        %td= brewery.beers.count
-        %td= link_to brewery.website, brewery.website
+      - breweries.each do |brewery|
+        %tr
+          %td= link_to brewery.name, brewery_path(brewery)
+          %td= brewery.beers.count
+          %td= link_to brewery.website, brewery.website

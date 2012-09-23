@@ -5,17 +5,17 @@ class User < ActiveRecord::Base
 
   before_create { generate_token(:auth_token) }
 
-  validates_length_of :password, :minimum => 6, :on => :create
+  # validates_length_of :password, :minimum => 6, :on => :create
 
-  validates_exclusion_of :username, :in => %w( admin superuser root goodbrews guest ), :message => 'is reserved'
-  validates_format_of :username, :with => /^\w+$/
-  validates_uniqueness_of :username, :case_sensitive => false, :message => 'has already been taken'
-  validates_length_of :username, :within => 4..20
-  validates_presence_of :username
+  # validates_exclusion_of :username, :in => %w( admin superuser root goodbrews guest ), :message => 'is reserved'
+  # validates_format_of :username, :with => /^\w+$/
+  # validates_uniqueness_of :username, :case_sensitive => false, :message => 'has already been taken'
+  # validates_length_of :username, :within => 4..20
+  # validates_presence_of :username
 
-  validates_format_of :email, :with => /@/
-  validates_uniqueness_of :email, :case_sensitive => false, :message => 'is already in use'
-  validates_presence_of :email
+  # validates_format_of :email, :with => /@/
+  # validates_uniqueness_of :email, :case_sensitive => false, :message => 'is already in use'
+  # validates_presence_of :email
 
   def to_param
     username.parameterize

@@ -12,7 +12,7 @@ class AuthenticationController < ApplicationController
       redirect_to dashboard_path, :notice => 'Welcome back!'
     else
       @login_error = 'invalid username/email and password combination'
-      render 'new'
+      render :sign_in
     end
   end
 

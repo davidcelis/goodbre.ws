@@ -22,7 +22,7 @@ $ ->
 
   # $('a:not([data-remote]):not([data-behavior]):not([data-skip-pjax])').pjax('[data-pjax-container]');
 
-  $('#beer-actions button').click ->
+  $('.beer-actions button').click ->
     action = $(this).data('action')
     id     = $(this).data('id')
 
@@ -44,6 +44,8 @@ $ ->
     $.ajax("/beers/#{id}/#{action}",
       method: method
       success: =>
+        $(this).siblings.removeClass()
+        $(this).siblings.addClass('btn')
         $(this).toggleClass(klass)
         $(this).data('action', newAction)
       error: =>

@@ -15,7 +15,7 @@ class ApplicationController < ActionController::Base
   end
 
   def ensure_signed_in!
-    redirect_to sign_in_path, :alert => 'Please sign in to continue.' unless signed_in?
+    redirect_to sign_in_account_path, :alert => 'Please sign in to continue.' unless signed_in?
   end
 
   helper_method :current_user, :signed_in?
