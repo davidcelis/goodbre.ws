@@ -8,15 +8,22 @@
     = form_for current_user, :url => account_path, :html => { :class => 'well' } do |f|
       %h1 Edit Account Settings
 
-      %p
-        = f.text_field :email, :placeholder => 'email'
-      %p
-        = f.password_field :current_password, :placeholder => 'current password'
-      %p
-        = f.password_field :password, :placeholder => 'new password'
-      %p
-        = f.password_field :password_confirmation, :placeholder => 'confirm new password'
+      .container-fluid
+        .row-fluid
+          .span8
+            %p= f.text_field :email, :placeholder => 'email'
+            %p= f.password_field :current_password, :placeholder => 'current password'
+            %p= f.password_field :password, :placeholder => 'new password'
+            %p= f.password_field :password_confirmation, :placeholder => 'confirm new password'
 
-      %button.btn
-        %i.icon-cogs
-        Update
+            %button.btn
+              %i.icon-cogs
+              Update
+
+          .span4
+            %p
+              = gravatar_image_tag(current_user.email)
+              #gravatar-button
+                %a.btn{ :href => 'http://gravatar.com/', :rel => 'nofollow', :target => '_blank' }
+                  %i.icon-camera-retro
+                  Gravatar

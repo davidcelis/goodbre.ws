@@ -8,14 +8,10 @@
     = form_for @user, :url => account_path, :html => { :class => 'well' } do |f|
       %h1 Sign up for goodbre.ws
 
-      %p
-        = f.text_field :email, :placeholder => 'email'
-      %p
-        = f.text_field :username, :placeholder => 'username'
-      %p
-        = f.password_field :password, :placeholder => 'password'
-      %p
-        = f.password_field :password_confirmation, :placeholder => 'confirm password'
+      %p= f.text_field :email, :placeholder => 'email'
+      %p= f.text_field :username, :placeholder => 'username'
+      %p= f.password_field :password, :placeholder => 'password'
+      %p= f.password_field :password_confirmation, :placeholder => 'confirm password'
 
       %button.btn
         %i.icon-user

@@ -1,0 +1,13 @@
+= render :partial => 'sidebar'
+
+.span9
+  #content
+    %h1
+      %i.icon-user
+      = @user.username
+    %br/
+
+    .tabbable
+      = render :partial => 'tabs', :locals => { :active => params[:action], :user => @user }
+      = render :partial => 'beers/table', :locals => { :beers => @beers }
+

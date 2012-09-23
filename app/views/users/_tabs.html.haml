@@ -1,0 +1,13 @@
+%ul.nav.nav-tabs
+  %li#likes-tab{ :class => active == 'show' ? 'active' : '' }
+    %a{ :href => user_path(user) }
+      %i.icon-thumbs-up
+      Likes
+  %li#dislikes-tab{ :class => active == 'dislikes' ? 'active' : '' }
+    %a{ :href => dislikes_user_path(user) }
+      %i.icon-thumbs-down
+      Dislikes
+  %li#fridge-tab{ :class => active == 'fridge' ? 'active' : '' }
+    %a{ :href => fridge_user_path(user) }
+      %i.icon-bookmark
+      Fridge

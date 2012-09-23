@@ -1,0 +1,18 @@
+.tab-content
+  #beers.tab-pane.active
+    %table.table.table-striped
+      %tr
+        %th Name
+        %th ABV
+        %th Style
+        %th Brewery
+        - if signed_in?
+          %th
+    - beers.each do |beer|
+      %tr
+        %td= beer.name
+        %td= beer.abv
+        %td= beer.style.name
+        %td= link_to beer.brewery.name, brewery_path(beer.brewery.permalink)
+        - if signed_in?
+          %td.pull-right= render :partial => 'buttons', :locals => { :beer => beer }

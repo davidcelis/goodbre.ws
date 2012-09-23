@@ -1,0 +1,25 @@
+%ul.nav.nav-tabs
+  %li#top-beers{ :class => active == 'index' ? 'active' : '' }
+    %a{ :href => dashboard_path }
+      %i.icon-star
+      Top 10 Beers
+  %li#recommendations-tab{ :class => active == 'recommendations' ? 'active' : '' }
+    %a{ :href => recommendations_dashboard_path}
+      %i.icon-heart
+      Recommendations
+  %li#likes-tab{ :class => active == 'likes' ? 'active' : '' }
+    %a{ :href => likes_dashboard_path }
+      %i.icon-thumbs-up
+      Likes
+  %li#dislikes-tab{ :class => active == 'dislikes' ? 'active' : '' }
+    %a{ :href => dislikes_dashboard_path }
+      %i.icon-thumbs-down
+      Dislikes
+  %li#fridge-tab{ :class => active == 'fridge' ? 'active' : '' }
+    %a{ :href => fridge_dashboard_path }
+      %i.icon-bookmark
+      Fridge
+  %li#similar-tab{ :class => active == 'similar' ? 'active' : '' }
+    %a{ :href => similar_dashboard_path }
+      %i.icon-group
+      Similar Users
