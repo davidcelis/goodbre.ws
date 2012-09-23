@@ -2,6 +2,7 @@
   #sidebar
     = image_tag 'b.png'
     %h1 Sign In
+    = link_to 'Forgot your password?', new_password_reset_path
 
 .span9
   #content
@@ -16,5 +17,3 @@
       %button.btn
         %i.icon-signin
         Sign In
-
-    = link_to 'Forgot your password?', new_password_reset_path
