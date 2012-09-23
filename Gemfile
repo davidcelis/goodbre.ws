@@ -9,8 +9,10 @@ gem 'jquery-rails'
 gem 'pjax-rails'
 gem 'haml'
 
-gem 'recommendable'
+gem 'recommendable', :github => 'davidcelis/recommendable'
 gem 'sidekiq'
+
+gem 'gravatar_image_tag'
 
 # Gems used only for assets and not required
 # in production environments by default.

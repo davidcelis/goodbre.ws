@@ -1,8 +1,8 @@
 .span3
   #sidebar
     #gravatar
-      = image_tag('user.png')
-    #settings
-      %a.btn{ :href => edit_account_path }
-        %i.icon-cogs
-        Settings
+      = gravatar_image_tag(current_user.email)
+    #gravatar-button
+      %a.btn{ :href => 'http://gravatar.com/', :rel => 'nofollow', :target => '_blank' }
+        %i.icon-camera-retro
+        Gravatar

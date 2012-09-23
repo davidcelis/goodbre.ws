@@ -1,5 +1,6 @@
 class BeersController < ApplicationController
   before_filter :ensure_signed_in!
+  respond_to :json
 
   # POST /beers/:id/like.json
   def like

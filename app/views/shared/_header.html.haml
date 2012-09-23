@@ -5,9 +5,9 @@
   .span3
     #current-user
       - if signed_in?
-        %a.btn{ :href => user_path(current_user) }
-          %i.icon-user
-          = current_user.username
+        %a.btn{ :href => edit_account_path }
+          %i.icon-cogs
+          Settings
         %a.btn{ :href => sign_out_account_path, 'data-method' => :post }
           %i.icon-signout
           Sign Out

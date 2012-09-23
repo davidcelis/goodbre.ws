@@ -2,23 +2,17 @@ class AccountController < ApplicationController
   # GET /account/new
   def new
     @user = User.new
-
-    respond_to do |format|
-      format.html # new.html.haml
-    end
   end
 
   # POST /account
   def create
     @user = User.new params[:user]
 
-    respond_to do |format|
-      if @user.save
-        cookies.permanent[:auth_token] = @user.auth_token
-        format.html { redirect_to root_path, :notice => 'Welcome to goodbre.ws!' }
-      else
-        format.html { render :action => :new, :status => :unprocessable_entity }
-      end
+    if @user.save
+      cookies.permanent[:auth_token] = @user.auth_token
+      redirect_to root_path, :notice => 'Welcome to goodbre.ws!'
+    else
+      render :action => :new, :status => :unprocessable_entity
     end
   end
 
@@ -28,12 +22,11 @@ class AccountController < ApplicationController
 
   # PUT /account
   def update
-    respond_to do |format|
-      if current_user.update_attributes params[:user]
-        format.html { redirect_to current_user, :notice => 'Settings saved.' }
-      else
-        format.html { render :action => :edit }
-      end
+    if current_user.authenticate(params[:user].delete(:current_password)) &&
+       current_user.update_attributes(params[:user])
+      format.html { redirect_to current_user, :notice => 'Settings saved.' }
+    else
+      format.html { render :action => :edit }
     end
   end
 
