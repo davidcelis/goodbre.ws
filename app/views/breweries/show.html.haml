@@ -1,0 +1,17 @@
+.span3
+  #sidebar
+    #brewery-image
+      = image_tag('brewery.png')
+      %h1= @brewery.name
+
+.span9
+  #content
+    %h1
+      %i.icon-user
+      = @user.username
+    %br/
+
+    .tabbable
+      = render :partial => 'tabs', :locals => { :active => params[:action], :brewery => @brewery }
+      = render :partial => 'beers/table', :locals => { :beers => @beers }
+

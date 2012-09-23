@@ -1,0 +1,13 @@
+%ul.nav.nav-tabs
+  %li#beers{ :class => active == 'beers' ? 'active' : '' }
+    %a{ :href => beers_search_path(:q => query }
+      %i.icon-glass
+      Beers
+  %li#breweries{ :class => active == 'breweries' ? 'active' : '' }
+    %a{ :href => breweries_search_path(:q => query }
+      %i.icon-home
+      Breweries
+  %li#users{ :class => active == 'users' ? 'active' : '' }
+    %a{ :href => users_search_path(:q => query }
+      %i.icon-group
+      Users

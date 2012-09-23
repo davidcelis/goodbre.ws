@@ -38,7 +38,9 @@ Goodbrews::Application.routes.draw do
     end
   end
 
-  resources :breweries, :only => :show
+  resources :breweries, :only => :show do
+    get :discontinued, :on => :member
+  end
 
   resources :users, :only => :show do
     member do
@@ -50,7 +52,11 @@ Goodbrews::Application.routes.draw do
     end
   end
 
-  post :search, :controller => :searches, :action => :search, :as => :search
+  controller :searches do
+     post '/search/beers', :as => :beers_search
+     post '/search/breweries', :as => :breweries_search
+     post '/search/users', :as => :users_search
+   end
 
   controller :pages do
     get :welcome

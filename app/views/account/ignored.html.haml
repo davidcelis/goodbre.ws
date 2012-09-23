@@ -1,0 +1,10 @@
+= render :partial => 'sidebar'
+
+.span9
+  #content
+    %h1
+      %i.icon-eye-close
+      Ignored Beers
+    %br/
+
+    = render :partial => 'beers/table', :locals => { :beers => @beers }

@@ -1,0 +1,15 @@
+.span3
+  #sidebar
+    = image_tag 'b.png'
+    %h1 Search
+
+.span9
+  #content
+    %h1
+      %i.icon-search
+      Search Results
+    %br/
+
+    .tabbable
+      = render :partial => 'tabs', :locals => { :active => params[:action], :query => params[:q] }
+      = render :partial => 'breweries/table', :locals => { :breweries => @breweries }

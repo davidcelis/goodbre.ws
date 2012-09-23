@@ -1,20 +1,31 @@
-.span3
-  #sidebar
-    = image_tag 'b.png'
-    %h1 Settings
+= render :partial => 'sidebar'
 
 .span9
   #content
     = form_for current_user, :url => account_path, :html => { :class => 'well' } do |f|
-      %h1 Edit Account Settings
+      %h1
+        %i.icon-cogs
+        Edit Account Settings
+      %br/
 
       .container-fluid
         .row-fluid
           .span8
-            %p= f.text_field :email, :placeholder => 'email'
-            %p= f.password_field :current_password, :placeholder => 'current password'
-            %p= f.password_field :password, :placeholder => 'new password'
-            %p= f.password_field :password_confirmation, :placeholder => 'confirm new password'
+            .control-group{ :class => current_user.errors[:email].any? ? 'error' : '' }
+              .controls
+                %input{ :name => 'user[email]', :placeholder => 'email', :type => 'text', :value => current_user.email }
+                %span.help-inline= current_user.errors[:email].join(' and ')
+            .control-group{ :class => current_user.errors[:current_password].any? ? 'error' : '' }
+              .controls
+                %input{ :name => 'user[current_password]', :placeholder => 'current password', :type => 'password' }
+                %span.help-inline= current_user.errors[:current_password].join(' and ')
+            .control-group{ :class => current_user.errors[:password].any? ? 'error' : '' }
+              .controls
+                %input{ :name => 'user[password]', :placeholder => 'new password', :type => 'password' }
+                %span.help-inline= current_user.errors[:password].join(' and ')
+            .control-group{ :class => current_user.errors[:password].any? ? 'error' : '' }
+              .controls
+                %input{ :name => 'user[password_confirmation]', :placeholder => 'confirm new password', :type => 'password' }
 
             %button.btn
               %i.icon-cogs

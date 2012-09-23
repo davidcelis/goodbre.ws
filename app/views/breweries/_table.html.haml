@@ -1,0 +1,12 @@
+.tab-content
+  #breweries.tab-pane.active
+    %table.table.table-striped
+      %tr
+        %th Name
+        %th Beers
+        %th Website
+    - breweries.each do |brewery|
+      %tr
+        %td= link_to brewery.name, brewery_path(brewery)
+        %td= brewery.beers.count
+        %td= link_to brewery.website, brewery.website

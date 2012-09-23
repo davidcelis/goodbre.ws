@@ -1,4 +1,5 @@
 class AccountController < ApplicationController
+  before_filter :ensure_signed_in!, :only => [:edit, :update, :destroy, :ignored]
   # GET /account/new
   def new
     @user = User.new
@@ -22,17 +23,22 @@ class AccountController < ApplicationController
 
   # PUT /account
   def update
-    if current_user.authenticate(params[:user].delete(:current_password)) &&
-       current_user.update_attributes(params[:user])
-      format.html { redirect_to current_user, :notice => 'Settings saved.' }
+    unless current_user.authenticate(params[:user].delete(:current_password))
+      current_user.errors.add(:current_password, 'was incorrect')
+      render :action => :edit and return
+    end
+
+    if current_user.update_attributes params[:user]
+      redirect_to dashboard_path
     else
-      format.html { render :action => :edit }
+      render :action => :edit
     end
   end
 
   # DELETE /account
   def destroy
     current_user.destroy
+    cookies.delete :auth_token
     redirect_to welcome_path, :notice => 'Come back some day!'
   end
 

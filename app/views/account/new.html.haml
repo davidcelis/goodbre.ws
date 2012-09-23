@@ -6,12 +6,26 @@
 .span9
   #content
     = form_for @user, :url => account_path, :html => { :class => 'well' } do |f|
-      %h1 Sign up for goodbre.ws
+      %h1
+        %i.icon-user
+        Sign up for goodbre.ws
+      %br/
 
-      %p= f.text_field :email, :placeholder => 'email'
-      %p= f.text_field :username, :placeholder => 'username'
-      %p= f.password_field :password, :placeholder => 'password'
-      %p= f.password_field :password_confirmation, :placeholder => 'confirm password'
+      .control-group{ :class => @user.errors[:email].any? ? 'error' : '' }
+        .controls
+          %input{ :name => 'user[email]', :placeholder => 'email', :type => 'text', :value => @user.email }
+          %span.help-inline= @user.errors[:email].join(' and ')
+      .control-group{ :class => @user.errors[:username].any? ? 'error' : '' }
+        .controls
+          %input{ :name => 'user[username]', :placeholder => 'username', :type => 'text', :value => @user.username }
+          %span.help-inline= @user.errors[:username].join(' and ')
+      .control-group{ :class => @user.errors[:password].any? ? 'error' : '' }
+        .controls
+          %input{ :name => 'user[password]', :placeholder => 'password', :type => 'password' }
+          %span.help-inline= @user.errors[:password].join(' and ')
+      .control-group{ :class => @user.errors[:password].any? ? 'error' : '' }
+        .controls
+          %input{ :name => 'user[password_confirmation]', :placeholder => 'confirm password', :type => 'password' }
 
       %button.btn
         %i.icon-user

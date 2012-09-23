@@ -7,14 +7,14 @@ class User < ActiveRecord::Base
 
   validates_length_of :password, :minimum => 6, :on => :create
 
-  validates_exclusion_of :username, :in => %w( admin superuser root goodbrews guest )
+  validates_exclusion_of :username, :in => %w( admin superuser root goodbrews guest ), :message => 'is reserved'
   validates_format_of :username, :with => /^\w+$/
-  validates_uniqueness_of :username, :case_sensitive => false, :message => 'has been taken.'
+  validates_uniqueness_of :username, :case_sensitive => false, :message => 'has already been taken'
   validates_length_of :username, :within => 4..20
   validates_presence_of :username
 
   validates_format_of :email, :with => /@/
-  validates_uniqueness_of :email, :case_sensitive => false, :message => 'is in use.'
+  validates_uniqueness_of :email, :case_sensitive => false, :message => 'is already in use'
   validates_presence_of :email
 
   def to_param

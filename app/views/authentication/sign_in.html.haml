@@ -7,7 +7,9 @@
 .span9
   #content
     = form_tag authenticate_account_path, :class => 'well' do
-      %h1 Sign in to goodbre.ws
+      %h1
+        %i.icon-signin
+        Sign in to goodbre.ws
 
       %p
         = text_field_tag :login, nil, :placeholder => 'email or username'
