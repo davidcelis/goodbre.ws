@@ -3,7 +3,6 @@
 %html
   %head
     %meta{:charset => 'utf-8'}
-    %meta{:name => 'viewport', :content => 'width=device-width, initial-scale=1.0'}
     %title goodbre.ws
     = stylesheet_link_tag    'application', :media => 'all'
     = javascript_include_tag 'application'
@@ -15,14 +14,13 @@
         #header.container-fluid
           = render :partial => 'shared/header'
 
-    .row-fluid
-      #application
-        = yield
+    #application.row-fluid
+      = yield
 
     #footer
       = render :partial => 'shared/footer'
 
     - if notice
-      #bottom.notice= notice
+      .notice= notice
     - elsif alert
-      #bottom.alert= alert
+      .alert= alert

@@ -1,0 +1,24 @@
+.span3
+  #sidebar
+    #goodbrews-b= image_tag "b.png"
+    %h1 Welcome!
+
+.span9
+  #content
+    .filler
+    %h1 goodbre.ws
+
+    #about
+      %p
+        Welcome to goodbre.ws, a web application for beer lovers who want to try something new.
+        Register an account and tell us what beer you like and what beer you don't, and we'll
+        do the rest! The more you tell us, the easier it will be for us to make more accurate
+        recommendations for you. When you're ready, sign up using the link above to get one
+        step closer to trying new beer!
+
+    .tabbable
+      %ul.nav.nav-tabs
+        %li.active= link_to "Top 10 Beers", "#top-beers", 'data-toggle' => 'tab'
+      .tab-content
+        #top-beers.tab-pane.active
+          Sup, son. Top beers go here.

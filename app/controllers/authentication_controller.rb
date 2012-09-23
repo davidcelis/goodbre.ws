@@ -1,10 +1,10 @@
 class AuthenticationController < ApplicationController
   # GET /sign_in
-  def new
+  def sign_in
   end
 
   # POST /sign_in
-  def create
+  def authenticate
     user = User.find_by_login params[:login]
 
     if user && user.authenticate(params[:password])
@@ -19,7 +19,7 @@ class AuthenticationController < ApplicationController
   end
 
   # POST /sign_out
-  def destroy
+  def sign_out
     cookies.delete :auth_token
     cookies.delete :username
     redirect_to welcome_path, :notice => 'Signed out.'

@@ -1,0 +1,37 @@
+.span3
+  #sidebar
+    #goodbrews-b= image_tag 'b.png'
+    %h1 About
+
+.span9
+  #content
+    %h1 About goodbre.ws
+
+    %p
+      Goodbrews is a web application that's good for three things: keeping track of which
+      beers you like, keeping track of which beers you don't like, and receiving recommendations
+      for what beer to try next! Here's how it works:
+
+    %p
+      %ol
+        %li Register an account using the link above
+        %li Like or dislike some beer
+        %li Receive some recommendations!
+
+    %p
+      Yup, it's that easy. Recommendations are refreshed within minutes of you liking or disliking a new beer!
+      Best of all, new features for Goodbrews are being developed all the time. The website is free to use and
+      has no ads.
+
+    %h1 About the developer
+
+    %p
+      Goodbrews was created by David Celis, a Rails developer. He
+      = link_to 'likes beer', user_path('davidcelis')
+      too! He frequently checks the feedback forums (visit using the tab on the left), so
+      please leave any questions, comments, or bug reports there!
+
+    %p
+      Graphics, including the Goodbrews logo, were designed by
+      = link_to 'Melissa Mays', 'http://melissamays.carbonmade.com/', :rel => 'nofollow', :target => '_blank'
+      \.

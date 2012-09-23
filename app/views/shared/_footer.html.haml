@@ -1,0 +1,15 @@
+.row-fluid
+  .span12
+    © #{Date.today.year}
+    = link_to 'goodbre.ws', root_path
+    •
+    = link_to 'About', about_path
+    •
+    = link_to 'Privacy', privacy_path
+    •
+    = link_to 'Terms', terms_path
+
+    #twitter-follow
+      %a.twitter-follow-button{ :href=> 'https://twitter.com/goodbrews', :data => { 'show-count' => false } }
+        Follow @goodbrews
+      <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src='//platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document,'script','twitter-wjs');</script>

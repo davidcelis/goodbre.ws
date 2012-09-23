@@ -11,7 +11,35 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120921214205) do
+ActiveRecord::Schema.define(:version => 20120921220039) do
+
+  create_table "beers", :force => true do |t|
+    t.integer  "brewery_id"
+    t.string   "name"
+    t.float    "abv"
+    t.integer  "style_id"
+    t.text     "description"
+    t.boolean  "discontinued"
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
+  end
+
+  add_index "beers", ["brewery_id"], :name => "index_beers_on_brewery_id"
+  add_index "beers", ["name"], :name => "index_beers_on_name"
+  add_index "beers", ["style_id"], :name => "index_beers_on_style_id"
+
+  create_table "breweries", :force => true do |t|
+    t.string   "name"
+    t.text     "description"
+    t.boolean  "closed"
+    t.string   "permalink"
+    t.string   "website"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
+
+  add_index "breweries", ["name"], :name => "index_breweries_on_name"
+  add_index "breweries", ["permalink"], :name => "index_breweries_on_permalink"
 
   create_table "recommendable_dislikes", :force => true do |t|
     t.integer  "user_id"
@@ -60,5 +88,29 @@ ActiveRecord::Schema.define(:version => 20120921214205) do
   add_index "recommendable_stashes", ["stashable_id"], :name => "index_recommendable_stashes_on_stashable_id"
   add_index "recommendable_stashes", ["stashable_type"], :name => "index_recommendable_stashes_on_stashable_type"
   add_index "recommendable_stashes", ["user_id", "stashable_id", "stashable_type"], :name => "user_stashed_constraint", :unique => true
+
+  create_table "styles", :force => true do |t|
+    t.string   "name"
+    t.text     "description"
+    t.string   "permalink"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
+
+  add_index "styles", ["permalink"], :name => "index_styles_on_permalink"
+
+  create_table "users", :force => true do |t|
+    t.string   "username",               :null => false
+    t.string   "email",                  :null => false
+    t.string   "password_digest",        :null => false
+    t.string   "auth_token"
+    t.string   "password_reset_token"
+    t.datetime "password_reset_sent_at"
+    t.datetime "created_at",             :null => false
+    t.datetime "updated_at",             :null => false
+  end
+
+  add_index "users", ["email"], :name => "index_users_on_email", :unique => true
+  add_index "users", ["username"], :name => "index_users_on_username", :unique => true
 
 end

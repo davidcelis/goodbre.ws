@@ -4,13 +4,15 @@ Goodbrews::Application.routes.draw do
 
   resource :account, :controller => :account, :except => :show do
     collection do
-      get  :sign_in, :controller  => :authentication, :action => :new, :as => :sign_in
-      post :sign_in, :controller  => :authentication, :action => :create
-      post :sign_out, :controller => :authentication, :action => :destroy, :as => :sign_out
+      get  :sign_in, :controller  => :authentication, :action => :sign_in, :as => :sign_in
+      post :sign_in, :controller  => :authentication, :action => :authenticate, :as => :authenticate
+      post :sign_out, :controller => :authentication, :action => :sign_out, :as => :sign_out
 
       get  :ignored
     end
   end
+
+  resources :password_resets, :only => [:new, :create, :edit, :update]
 
   resource :dashboard, :controller => :dashboard, :only => :index do
     collection do

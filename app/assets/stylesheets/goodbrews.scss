@@ -1,0 +1,83 @@
+@import "font-awesome";
+@import 'constants';
+
+body {
+  font-family: 'Century Gothic', sans-serif !important;
+  font-size: 12px;
+  background-color: $green;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-weight: normal;
+}
+
+a, a:hover, a:active {
+  color: #963800;
+}
+
+p {
+  margin: 20px 0;
+}
+
+.strong {
+  font-weight: bold;
+}
+
+.emphasized {
+  font-style: italic;
+}
+
+#header, #footer, #application {
+  @include rounded;
+  background-color: white;
+}
+
+#header {
+  margin: 20px 0px;
+  padding: 10px 20px;
+
+  #current-user {
+    margin: 10px 0 0 0;
+    font-size: 14px;
+    text-align: right;
+  }
+
+  #search {
+    margin: 10px 0 0 0;
+
+    form {
+      margin: 0 !important;
+
+      input {
+        margin: 0 !important;
+      }
+
+      button {
+        height: 30px;
+        position: relative;
+      }
+    }
+  }
+}
+
+.addon {
+  height: 28px !important;
+}
+
+#application {
+  margin: 0;
+}
+
+#sidebar, #content {
+  padding: 20px;
+}
+
+#footer {
+  margin: 20px 0;
+  padding: 10px 20px;
+  text-align: center;
+}
+
+#twitter-follow {
+  margin: 5px 0 0 0;
+}

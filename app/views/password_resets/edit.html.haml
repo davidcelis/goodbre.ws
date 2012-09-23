@@ -1,0 +1,23 @@
+.span3
+  #sidebar
+    = image_tag 'b.png'
+    %h1 New Password
+
+.span9
+  #content
+    = form_for @user, :url => password_reset_path(params[:id]) do |f|
+      - if @user.errors.any?
+        .errors
+          %h2 The following problems were found:
+
+          %ul
+            - @user.errors.full_messages.each do |message|
+              %li= message
+
+      %p
+        = f.password_field :password, :placeholder => 'password'
+
+      %p
+        = f.password_field :password_confirmation, :placeholder => 'confirm password'
+
+      = f.submit "Update Password", :class => 'btn'

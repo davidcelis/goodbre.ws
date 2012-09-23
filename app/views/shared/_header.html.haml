@@ -1,0 +1,25 @@
+.row-fluid
+  .span6
+    #logo
+      = link_to image_tag('logo_sm.png'), root_path
+  .span3
+    #current-user
+      - if signed_in?
+        Signed in as
+        = link_to current_user.username, user_path(current_user.username)
+        |
+        = link_to 'Sign out', sign_out_account_path, 'data-method' => :post
+      - else
+        %a.btn{ :href => sign_in_account_path }
+          %i.icon-signin
+          Sign In
+        %a.btn{ :href => new_account_path }
+          %i.icon-user
+          Register
+  .span3
+    #search
+      = form_tag '/search', :html => { :class => 'well form-search '} do
+        .input-append
+          = text_field_tag 'search', nil, :placeholder => 'Search'
+          %button.btn.add-on
+            %i.icon-search

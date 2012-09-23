@@ -1,0 +1,16 @@
+$green: #00593a;
+$lager: #FFF0A5;
+$amber: #FFB03B;
+$red: #B64926;
+$brown: #8E2800;
+
+@mixin rounded {
+  -moz-border-radius-topleft: 5px;
+  -moz-border-radius-topright: 5px;
+  -moz-border-radius-bottomleft: 5px;
+  -moz-border-radius-bottomright: 5px;
+  -webkit-border-top-left-radius: 5px;
+  -webkit-border-top-right-radius: 5px;
+  -webkit-border-bottom-left-radius: 5px;
+  -webkit-border-bottom-right-radius: 5px;
+}
