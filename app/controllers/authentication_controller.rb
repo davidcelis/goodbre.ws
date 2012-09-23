@@ -11,7 +11,7 @@ class AuthenticationController < ApplicationController
       cookies.permanent[:auth_token] = user.auth_token
       redirect_to dashboard_path, :notice => 'Welcome back!'
     else
-      flash.now.alert = 'Invalid username/email or password'
+      @login_error = 'invalid username/email and password combination'
       render 'new'
     end
   end
@@ -19,6 +19,6 @@ class AuthenticationController < ApplicationController
   # POST /sign_out
   def sign_out
     cookies.delete :auth_token
-    redirect_to welcome_path, :notice => 'Signed out.'
+    redirect_to welcome_path
   end
 end

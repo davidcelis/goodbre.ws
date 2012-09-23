@@ -10,11 +10,16 @@
       %h1
         %i.icon-signin
         Sign in to goodbre.ws
+      %br/
 
-      %p
-        = text_field_tag :login, nil, :placeholder => 'email or username'
-      %p
-        = password_field_tag :password, nil, :placeholder => 'password'
+      .control-group{ :class => @login_error ? 'error' : '' }
+        .controls
+          %input{ :name => 'login', :placeholder => 'email or username', :type => 'text', :value => params[:login] }
+          %span.help-inline= @login_error
+      .control-group{ :class => @login_error ? 'error' : '' }
+        .controls
+          %input{ :name => 'password', :placeholder => 'password', :type => 'password' }
+          %span.help-inline
 
       %button.btn
         %i.icon-signin
