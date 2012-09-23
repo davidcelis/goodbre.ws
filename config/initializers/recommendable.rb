@@ -13,16 +13,16 @@ Recommendable.redis = Redis.new(:host => "localhost", :port => 6379)
 # Recommendable.redis.select "0"
 
 # If using Sidekiq, uncomment the following or place it in config/initializers/sidekiq.rb:
-# Sidekiq.configure_server do |config| 	
-#   require 'sidekiq/middleware/server/unique_jobs'
-#   config.server_middleware do |chain|
-#     chain.add Sidekiq::Middleware::Server::UniqueJobs
-#   end	 	
-# end
-# 
-# Sidekiq.configure_client do |config|	 	
-#   require 'sidekiq/middleware/client/unique_jobs'
-#   config.client_middleware do |chain|
-#     chain.add Sidekiq::Middleware::Client::UniqueJobs
-#   end
-# end
+Sidekiq.configure_server do |config|
+  require 'sidekiq/middleware/server/unique_jobs'
+  config.server_middleware do |chain|
+    chain.add Sidekiq::Middleware::Server::UniqueJobs
+  end
+end
+
+Sidekiq.configure_client do |config|
+  require 'sidekiq/middleware/client/unique_jobs'
+  config.client_middleware do |chain|
+    chain.add Sidekiq::Middleware::Client::UniqueJobs
+  end
+end
