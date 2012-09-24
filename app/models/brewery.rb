@@ -1,4 +1,7 @@
 class Brewery < ActiveRecord::Base
+  include Tire::Model::Search
+  include Tire::Model::Callbacks
+
   attr_accessible :closed, :description, :name, :permalink, :website
   has_many :beers
 
