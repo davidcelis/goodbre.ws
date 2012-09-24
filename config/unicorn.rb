@@ -21,11 +21,20 @@ worker_processes 16
 preload_app true
 
 before_fork do |server, worker|
-  # the following is highly recomended for Rails + "preload_app true"
-  # as there's no need for the master process to hold a connection
-  defined?(ActiveRecord::Base) and
-    ActiveRecord::Base.connection.disconnect!
-  # ...
+  defined?(ActiveRecord::Base) && ActiveRecord::Base.connection.disconnect!
+
+  old_pid = APP_ROOT + '/tmp/pids/unicorn.pid.oldbin'
+  if File.exists?(old_pid) && server.pid != old_pid
+    begin
+      Process.kill("QUIT", File.read(old_pid).to_i)
+    rescue Errno::ENOENT, Errno::ESRCH
+      puts "Old master alerady dead"
+    end
+  end
+end
+
+after_fork do |server, worker|
+  defined?(ActiveRecord::Base) && ActiveRecord::Base.establish_connection
 end
 
 # Restart workers hangin' out for more than 240 secs
