@@ -4,6 +4,8 @@ gem 'thinking-sphinx', :require => 'thinking_sphinx'
 gem 'rails', '3.2.8'
 gem 'pg'
 gem 'bcrypt-ruby'
+gem 'unicorn'
+gem 'capistrano'
 
 gem 'twitter-bootstrap-rails'
 gem 'jquery-rails'
@@ -30,5 +32,4 @@ group :development, :test do
   gem 'minitest-rails-capybara'
   gem 'miniskirt'
   gem 'pry-rails'
-  gem 'puma'
 end

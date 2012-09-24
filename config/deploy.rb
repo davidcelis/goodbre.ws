@@ -1,4 +1,6 @@
 require 'bundler/capistrano'
+require 'sidekiq/capistrano'
+require 'thinking_sphinx/deploy/capistrano'
 
 set :application, 'goodbre.ws'
 
@@ -16,14 +18,18 @@ set :deploy_via, :remote_cache
 ssh_options[:forward_agent] = true
 default_run_options[:pty] = true
 
-after 'deploy:finalize_update', 'sensitive_files:copy'
-after 'deploy', 'deploy:cleanup'
+set :default_environment, {
+  'PATH' => "/home/david/.oh-my-zsh/custom/plugins/stephencelis/bin:/home/david/.rbenv/shims:/home/david/.rbenv/bin:/home/david/.rbenv/shims:/usr/local/bin:/usr/local/sbin:/usr/local/share/python:/home/david/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/System/Library/Frameworks/JavaScriptCore.framework/Versions/A/Resources://home/david/Library/Developer/flex_sdk_4/bin",
+  'GEM_HOME' => '/home/david/.rbenv/versions/1.9.3-p194-perf/lib/ruby/gems/1.9.1/',
+  'GEM_PATH' => '/home/david/.rbenv/versions/1.9.3-p194-perf/lib/ruby/gems/1.9.1/',
+  'BUNDLE_PATH' => '/home/david/.rbenv/versions/1.9.3-p194-perf/lib/ruby/gems/1.9.1/gems/'
+}
 
 namespace :deploy do
   %w[start stop restart].each do |command|
     desc "#{command} unicorn server"
     task command, roles: :app, except: {no_release: true} do
-      run "/etc/init.d/unicorn_#{application} #{command}" # Using unicorn as the app server
+      sudo "/etc/init.d/unicorn_#{application} #{command}" # Using unicorn as the app server
     end
   end
 
@@ -53,3 +59,16 @@ namespace :deploy do
   end
   before "deploy", "deploy:check_revision"
 end
+
+before 'deploy:update_code', 'thinking_sphinx:stop'
+after 'deploy:update_code', 'thinking_sphinx:start'
+
+namespace :sphinx do
+  desc "Symlink Sphinx indexes"
+  task :symlink_indexes, :roles => [:app] do
+    run "ln -nfs #{shared_path}/db/sphinx #{release_path}/db/sphinx"
+  end
+end
+
+after 'deploy:finalize_update', 'sphinx:symlink_indexes'
+after 'deploy', 'deploy:cleanup'
