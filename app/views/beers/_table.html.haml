@@ -18,4 +18,4 @@
             %td.beer-buttons= render :partial => 'beers/buttons', :locals => { :beer => beer }
 
     .center
-      = paginate beers unless params[:action] == 'index' # For top beers
+      = paginate beers unless params[:action] == 'index' || params[:action] == 'welcome' # For top beers

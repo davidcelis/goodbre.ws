@@ -22,6 +22,7 @@ db/sphinx/
 vendor/bundle
 
 # Ignore sensitive files.
+config/smtp.yml
 config/database.yml
 config/initializers/secret_token.rb
 

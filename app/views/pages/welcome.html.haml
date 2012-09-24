@@ -19,19 +19,4 @@
     .tabbable
       %ul.nav.nav-tabs
         %li.active= link_to "Top 10 Beers", "#top-beers", 'data-toggle' => 'tab'
-      .tab-content
-        #top-beers.tab-pane.active
-          %table.table.table-striped
-            %tr
-              %th Name
-              %th ABV
-              %th Style
-              %th Brewery
-              %th
-          - Beer.top(10).each do |beer|
-            %tr
-              %td= beer.name
-              %td= beer.abv
-              %td= beer.style.name
-              %td= beer.brewery.name
-              %td= render :partial => 'beers/buttons', :locals => { :beer => beer }
+      = render :partial => 'beers/table', :locals => { :beers => Beer.top(10) }
