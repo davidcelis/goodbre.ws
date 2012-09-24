@@ -49,7 +49,7 @@ Goodbrews::Application.configure do
   # config.assets.precompile += %w( search.js )
 
   # Disable delivery errors, bad email addresses will be ignored
-  # config.action_mailer.raise_delivery_errors = false
+  config.action_mailer.raise_delivery_errors = false
 
   # Enable threaded mode
   # config.threadsafe!
@@ -68,6 +68,7 @@ Goodbrews::Application.configure do
   config.action_mailer.default_url_options = {
     :host => 'goodbre.ws'
   }
+
   config.action_mailer.delivery_method = :smtp
-  config.action_mailer.smtp_settings = YAML.load_file(File.join(Rails.root, 'config', 'smtp.yml'))
+  config.action_mailer.smtp_settings = YAML.load_file(Rails.root.join('config', 'smtp.yml')).try(:to_options)
 end
