@@ -20,8 +20,8 @@
           Register
   .span3
     #search
-      = form_tag beers_search_path, :html => { :class => 'well form-search '} do
+      = form_tag beers_search_path, :method => :get, :class => 'form-search' do
         .input-append
-          = text_field_tag 'search', nil, :placeholder => 'Search'
+          = text_field_tag 'q', nil, :placeholder => 'Search'
           %button.btn.add-on
             %i.icon-search

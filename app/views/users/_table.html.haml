@@ -8,7 +8,10 @@
         %th Dislikes
       - users.each do |user|
         %tr
-          %td= gravatar_image_tag(user.email, :size => 50)
-          %td= link_to user.username user_path(user.username)
+          %td= gravatar_image_tag(user.email, :gravatar => { :size => 50 })
+          %td= link_to user.username, user_path(user.username)
           %td= user.liked_beers.count
           %td= user.disliked_beers.count
+
+    .center
+      = paginate users unless params[:action] == 'similar'

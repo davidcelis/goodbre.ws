@@ -44,6 +44,6 @@ class AccountController < ApplicationController
 
   # GET /account/ignored
   def ignored
-    @beers = current_user.ignored_beers
+    @beers = current_user.ignored_beers.page(params[:page])
   end
 end

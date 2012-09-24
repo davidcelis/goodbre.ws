@@ -20,11 +20,9 @@ $ ->
   $(".tooltip").tooltip()
   $("a[rel=tooltip]").tooltip()
 
-  # $('a:not([data-remote]):not([data-behavior]):not([data-skip-pjax])').pjax('[data-pjax-container]');
-
   $('.beer-actions button').click ->
-    action = $(this).data('action')
-    id     = $(this).data('id')
+    action = $(this).attr('data-action')
+    id     = $(this).attr('data-id')
 
     switch action
       when 'like', 'dislike', 'stash', 'ignore'
@@ -32,7 +30,8 @@ $ ->
         newAction = "un#{action}"
       when 'unlike', 'undislike', 'unstash', 'unignore'
         method = 'DELETE'
-        newAction = action.substring(2)
+        newAction = action.replace('un', '')
+        action = newAction
       else
         return
 
@@ -42,11 +41,16 @@ $ ->
     klass = 'btn-warning' if action is 'ignore'  or action is 'unignore'
 
     $.ajax("/beers/#{id}/#{action}",
-      method: method
-      success: =>
-        $(this).siblings.removeClass()
-        $(this).siblings.addClass('btn')
+      type: method
+      success: (data) =>
+        for button in $(this).siblings()
+          do (button) ->
+            $(button).removeClass()
+            $(button).addClass('btn')
+            replacement = $(button).attr('data-action').replace('un', '')
+            $(button).attr('data-action', replacement)
+
         $(this).toggleClass(klass)
-        $(this).data('action', newAction)
+        $(this).attr('data-action', newAction)
       error: =>
         console.log('hi'))

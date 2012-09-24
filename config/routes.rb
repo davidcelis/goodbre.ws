@@ -53,10 +53,10 @@ Goodbrews::Application.routes.draw do
   end
 
   controller :searches do
-     post '/search/beers', :as => :beers_search
-     post '/search/breweries', :as => :breweries_search
-     post '/search/users', :as => :users_search
-   end
+    get '/search/beers', :as => :beers_search
+    get '/search/breweries', :as => :breweries_search
+    get '/search/users', :as => :users_search
+  end
 
   controller :pages do
     get :welcome

@@ -2,13 +2,12 @@
   #sidebar
     #brewery-image
       = image_tag('brewery.png')
-      %h1= @brewery.name
 
 .span9
   #content
     %h1
-      %i.icon-user
-      = @user.username
+      %i.icon-home
+      = @brewery.name
     %br/
 
     .tabbable

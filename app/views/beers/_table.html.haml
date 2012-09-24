@@ -15,4 +15,7 @@
           %td= beer.style.name
           %td= link_to beer.brewery.name, brewery_path(beer.brewery.permalink)
           - if signed_in?
-            %td.pull-right= render :partial => 'beers/buttons', :locals => { :beer => beer }
+            %td.beer-buttons= render :partial => 'beers/buttons', :locals => { :beer => beer }
+
+    .center
+      = paginate beers unless params[:action] == 'index' # For top beers

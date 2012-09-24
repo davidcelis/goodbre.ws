@@ -1,7 +1,4 @@
 class User < ActiveRecord::Base
-  include Tire::Model::Search
-  include Tire::Model::Callbacks
-
   attr_accessible :email, :username, :password, :password_confirmation
   has_secure_password
   recommends :beers
@@ -20,11 +17,10 @@ class User < ActiveRecord::Base
   validates_uniqueness_of :email, :case_sensitive => false, :message => 'is already in use'
   validates_presence_of :email
 
-  # Tire
-
-  # mapping do
-  #   indexes :id
-  # end
+  # Sphinx
+  define_index do
+    indexes :username
+  end
 
   def to_param
     username.parameterize
@@ -49,5 +45,9 @@ class User < ActiveRecord::Base
 
   def self.find_by_login(login)
     where('username = ? OR email = ?', login, login).first
+  end
+
+  def self.paginate(options = {})
+    page(options[:page]).per(options[:per_page])
   end
 end

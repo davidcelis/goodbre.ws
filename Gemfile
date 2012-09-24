@@ -1,5 +1,6 @@
 source 'https://rubygems.org'
 
+gem 'thinking-sphinx', :require => 'thinking_sphinx'
 gem 'rails', '3.2.8'
 gem 'pg'
 gem 'bcrypt-ruby'

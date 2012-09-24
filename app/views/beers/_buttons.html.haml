@@ -1,9 +1,25 @@
 .btn-group.beer-actions
-  %button.btn{ :class => (current_user.likes?(beer) ? 'btn-success' : ''), :data => { :id => beer.id, :action => :like } }
-    %i.icon-thumbs-up
-  %button.btn{ :class => (current_user.dislikes?(beer) ? 'btn-danger' : ''), :data => { :id => beer.id, :action => :dislike } }
-    %i.icon-thumbs-down
-  %button.btn{ :class => (current_user.stashed?(beer) ? 'btn-primary' : ''), :data => { :id => beer.id, :action => :stash } }
-    %i.icon-bookmark
-  %button.btn{ :class => (current_user.ignored?(beer) ? 'btn-warning' : ''), :data => { :id => beer.id, :action => :ignore } }
-    %i.icon-eye-close
+  - if current_user.likes?(beer)
+    %button.btn.btn-success{ :data => { :id => beer.id, :action => :unlike } }
+      %i.icon-thumbs-up
+  - else
+    %button.btn{ :data => { :id => beer.id, :action => :like } }
+      %i.icon-thumbs-up
+  - if current_user.dislikes?(beer)
+    %button.btn.btn-danger{ :data => { :id => beer.id, :action => :undislike } }
+      %i.icon-thumbs-down
+  - else
+    %button.btn{ :data => { :id => beer.id, :action => :dislike } }
+      %i.icon-thumbs-down
+  - if current_user.stashed?(beer)
+    %button.btn.btn-primary{ :data => { :id => beer.id, :action => :unstash } }
+      %i.icon-bookmark
+  - else
+    %button.btn{ :data => { :id => beer.id, :action => :stash } }
+      %i.icon-bookmark
+  - if current_user.ignored?(beer)
+    %button.btn.btn-warning{ :data => { :id => beer.id, :action => :ignore } }
+      %i.icon-eye-close
+  - else
+    %button.btn{ :data => { :id => beer.id, :action => :ignore } }
+      %i.icon-eye-close
