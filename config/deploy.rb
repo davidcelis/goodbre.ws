@@ -19,25 +19,24 @@ ssh_options[:forward_agent] = true
 default_run_options[:pty] = true
 
 set :default_environment, {
-  'PATH' => "/home/david/.oh-my-zsh/custom/plugins/stephencelis/bin:/home/david/.rbenv/shims:/home/david/.rbenv/bin:/home/david/.rbenv/shims:/usr/local/bin:/usr/local/sbin:/usr/local/share/python:/home/david/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/System/Library/Frameworks/JavaScriptCore.framework/Versions/A/Resources://home/david/Library/Developer/flex_sdk_4/bin",
-  'GEM_HOME' => '/home/david/.rbenv/versions/1.9.3-p194-perf/lib/ruby/gems/1.9.1/',
-  'GEM_PATH' => '/home/david/.rbenv/versions/1.9.3-p194-perf/lib/ruby/gems/1.9.1/',
-  'BUNDLE_PATH' => '/home/david/.rbenv/versions/1.9.3-p194-perf/lib/ruby/gems/1.9.1/gems/'
+  'PATH' => "/home/deploy/.rbenv/shims:/home/deploy/.rbenv/bin:$PATH"
 }
 
 namespace :deploy do
   %w[start stop restart].each do |command|
     desc "#{command} unicorn server"
     task command, roles: :app, except: {no_release: true} do
-      sudo "/etc/init.d/unicorn_#{application} #{command}" # Using unicorn as the app server
+      run "/etc/init.d/unicorn_#{application} #{command}" # Using unicorn as the app server
     end
   end
 
   task :setup_config, roles: :app do
     sudo "ln -nfs #{current_path}/config/nginx.conf /etc/nginx/sites-enabled/#{application}"
     sudo "ln -nfs #{current_path}/config/unicorn_ini.sh /etc/init.d/unicorn_#{application}"
-    run "mkdir -p #{shared_path}/config"
+    run "mkdir -p #{shared_path}/config/initializers"
     put File.read("config/database.yml"), "#{shared_path}/config/database.yml"
+    put File.read("config/smtp.yml"), "#{shared_path}/config/smtp.yml"
+    put File.read("config/initializers/secret_token.rb"), "#{shared_path}/config/initializers/secret_token.rb"
     puts "Now edit the config files in #{shared_path}."
   end
   after "deploy:setup", "deploy:setup_config"
@@ -60,9 +59,6 @@ namespace :deploy do
   before "deploy", "deploy:check_revision"
 end
 
-before 'deploy:update_code', 'thinking_sphinx:stop'
-after 'deploy:update_code', 'thinking_sphinx:start'
-
 namespace :sphinx do
   desc "Symlink Sphinx indexes"
   task :symlink_indexes, :roles => [:app] do
@@ -70,5 +66,8 @@ namespace :sphinx do
   end
 end
 
+after 'deploy:update_code', 'deploy:migrate'
+before 'deploy:update_code', 'thinking_sphinx:stop'
+after 'deploy:update_code', 'thinking_sphinx:start'
 after 'deploy:finalize_update', 'sphinx:symlink_indexes'
 after 'deploy', 'deploy:cleanup'

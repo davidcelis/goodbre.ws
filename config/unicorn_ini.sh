@@ -1,4 +1,4 @@
-#!/usr/bin/zsh
+#!/bin/sh
 ### BEGIN INIT INFO
 # Provides:          unicorn
 # Required-Start:    $remote_fs $syslog

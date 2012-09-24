@@ -12,7 +12,7 @@
 
 # Ignore sphinx
 config/*.sphinx.conf
-db/sphinx/
+db/sphinx
 
 # Ignore all logfiles and tempfiles.
 /log/*.log
