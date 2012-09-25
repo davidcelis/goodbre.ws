@@ -24,6 +24,7 @@ vendor/bundle
 # Ignore sensitive files.
 config/smtp.yml
 config/database.yml
+config/newrelic.yml
 config/initializers/secret_token.rb
 
 # Ignore development-specific files

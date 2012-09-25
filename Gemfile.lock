@@ -128,6 +128,7 @@ GEM
       jruby-pageant (>= 1.1.1)
     net-ssh-gateway (1.1.0)
       net-ssh (>= 1.99.1)
+    newrelic_rpm (3.4.2.1)
     nokogiri (1.5.5)
     pg (0.14.1)
     polyglot (0.3.3)
@@ -234,6 +235,7 @@ DEPENDENCIES
   miniskirt
   minitest-rails
   minitest-rails-capybara
+  newrelic_rpm
   pg
   pry-rails
   puma

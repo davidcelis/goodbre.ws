@@ -6,6 +6,7 @@ gem 'pg'
 gem 'bcrypt-ruby'
 gem 'unicorn'
 gem 'capistrano'
+gem 'newrelic_rpm'
 
 gem 'twitter-bootstrap-rails'
 gem 'jquery-rails'
