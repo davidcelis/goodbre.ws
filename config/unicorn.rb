@@ -35,6 +35,7 @@ end
 
 after_fork do |server, worker|
   defined?(ActiveRecord::Base) && ActiveRecord::Base.establish_connection
+  defined?(NewRelic::Agent) && NewRelic::Agent.manual_start
 end
 
 # Restart workers hangin' out for more than 240 secs
