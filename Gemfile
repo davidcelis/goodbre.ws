@@ -9,7 +9,6 @@ gem 'capistrano'
 
 gem 'twitter-bootstrap-rails'
 gem 'jquery-rails'
-gem 'pjax-rails'
 gem 'haml'
 
 gem 'recommendable', :github => 'davidcelis/recommendable'

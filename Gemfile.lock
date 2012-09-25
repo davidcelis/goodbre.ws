@@ -1,6 +1,6 @@
 GIT
   remote: git://github.com/davidcelis/recommendable.git
-  revision: 9c25980dcafacaf3252e048bd4c0073c1b47f50d
+  revision: b47cd05645ee814e9828a7f4fd52f53700a6a7c8
   specs:
     recommendable (1.1.7)
       hooks (>= 0.2.1)
@@ -130,8 +130,6 @@ GEM
       net-ssh (>= 1.99.1)
     nokogiri (1.5.5)
     pg (0.14.1)
-    pjax-rails (0.1.4)
-      jquery-rails
     polyglot (0.3.3)
     pry (0.9.10)
       coderay (~> 1.0.5)
@@ -237,7 +235,6 @@ DEPENDENCIES
   minitest-rails
   minitest-rails-capybara
   pg
-  pjax-rails
   pry-rails
   puma
   rails (= 3.2.8)

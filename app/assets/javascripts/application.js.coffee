@@ -12,10 +12,10 @@
 #
 #= require jquery
 #= require jquery_ujs
-#= require pjax
+#= require jquery.pjax
 #= require twitter/bootstrap
 
-$ ->
+setEventsForPjax = ->
   $("a[rel=popover]").popover()
   $(".tooltip").tooltip()
   $("a[rel=tooltip]").tooltip()
@@ -54,3 +54,12 @@ $ ->
         $(this).attr('data-action', newAction)
       error: =>
         console.log('hi'))
+
+$ ->
+  setEventsForPjax()
+
+  $('[data-pjax-container]')
+    .pjax('a:not([data-remote]):not([data-method]):not([data-behavior]):not([data-skip-pjax])')
+    .on('pjax:success', ->
+      setEventsForPjax()
+    )
