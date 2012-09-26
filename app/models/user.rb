@@ -4,6 +4,7 @@ class User < ActiveRecord::Base
   recommends :beers
 
   before_create { generate_token(:auth_token) }
+  after_create { send_welcome_email }
 
   validates_length_of :password, :minimum => 6, :on => :create
 
@@ -30,6 +31,10 @@ class User < ActiveRecord::Base
     begin
       self[column] = SecureRandom.urlsafe_base64
     end while User.exists?(column => self[column])
+  end
+
+  def send_welcome_email
+    UserMailer.welcome(self).deliver
   end
 
   def send_password_reset

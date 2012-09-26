@@ -11,8 +11,7 @@ class AuthenticationController < ApplicationController
       cookies.permanent[:auth_token] = user.auth_token
       redirect_to dashboard_path, :notice => 'Welcome back!'
     else
-      @login_error = 'invalid username/email and password combination'
-      render :sign_in
+      redirect_to sign_in_account_path, :notice => 'Invalid login/password combination'
     end
   end
 

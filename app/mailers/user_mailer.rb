@@ -11,4 +11,9 @@ class UserMailer < ActionMailer::Base
 
     mail :to => user.email, :subject => "goodbre.ws - Password Reset"
   end
+
+  def welcome(user)
+    @user = user
+
+    mail :to => user.email, :subject => "Welcome to goodbre.ws!"
 end
