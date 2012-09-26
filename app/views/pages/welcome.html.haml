@@ -9,12 +9,14 @@
     %h1 goodbre.ws
 
     #about
-      %p
-        Welcome to goodbre.ws, a web application for beer lovers who want to try something new.
-        Register an account and tell us what beer you like and what beer you don't, and we'll
-        do the rest! The more you tell us, the easier it will be for us to make more accurate
-        recommendations for you. When you're ready, sign up using the link above to get one
-        step closer to trying new beer!
+      %p.lead
+        Welcome to goodbre.ws, a website for beer lovers who want to try something new.
+        Tell us what beer you like and what beer you don't, and we'll do the rest!
+        The more you tell us, the easier it will be for us to make more accurate
+        recommendations for you. When you're ready, sign up using the button above to get one
+        step closer to trying new beer! Also check out
+        = link_to 'the about page', about_path
+        to see how just how easy it is!
 
     .tabbable
       %ul.nav.nav-tabs

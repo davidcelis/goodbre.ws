@@ -7,31 +7,48 @@
   #content
     %h1 About goodbre.ws
 
-    %p
-      Goodbrews is a web application that's good for three things: keeping track of which
-      beers you like, keeping track of which beers you don't like, and receiving recommendations
-      for what beer to try next! Here's how it works:
+    %p.lead
+      Goodbrews is a website that's great for beer exploration. Use it to keep
+      track of which beers you like, which beers you don't like, and what beers
+      you're going to (and what beers you should) try next! Using goodbre.ws is
+      really easy:
 
-    %p
-      %ol
-        %li Register an account using the link above
-        %li Like or dislike some beer
-        %li Receive some recommendations!
+    %p.lead.text-success
+      %i.icon-thumbs-up
+      Like some beers
 
-    %p
-      Yup, it's that easy. Recommendations are refreshed within minutes of you liking or disliking a new beer!
-      Best of all, new features for Goodbrews are being developed all the time. The website is free to use and
-      has no ads.
+    %p.lead.text-error
+      %i.icon-thumbs-down
+      Dislike some beers
+
+    %p.lead.text-info
+      %i.icon-bookmark
+      Tell us (and friends) what you already know you're going to try next
+
+    %p.lead.text-warning
+      %i.icon-eye-close
+      Tell us what beers you just don't care about
+
+    %p.lead
+      Once you've liked or disliked even just one beer, you'll start getting
+      recommendations within a few minutes.
+      - unless signed_in?
+        So #{link_to 'sign up', new_account_path} to get started!
 
     %h1 About the developer
 
-    %p
-      Goodbrews was created by David Celis, a Rails developer. He
-      = link_to 'likes beer', user_path('davidcelis')
-      too! He frequently checks the feedback forums (visit using the tab on the left), so
-      please leave any questions, comments, or bug reports there!
+    %p.lead
+      Hi. My name is David Celis. I #{link_to 'love beer', user_path('davidcelis')}.
+      I made this website solely for that reason, and to help other people find
+      new beer to try. I have a #{link_to 'blog', 'http://davidcelis.com/', :rel => 'nofollow', :target => '_blank'}
+      where I've written about goodbre.ws and the algorithm that powers it, and
+      I can be found on most places of import on the internet as @davidcelis, including
+      = link_to 'Twitter', 'http://twitter.com/davidelis', :rel => 'nofollow', :target => '_blank'
+      and #{link_to 'GitHub', 'https://github.com/', :rel => 'nofollow', :target => '_blank'}. This website is lovingly
+      open source, and I try to address issues as quickly as possible. If you find
+      a bug or have questions, please open up an issue using the Feedback link
+      below.
 
-    %p
-      Graphics, including the Goodbrews logo, were designed by
-      = link_to 'Melissa Mays', 'http://melissamays.carbonmade.com/', :rel => 'nofollow', :target => '_blank'
-      \.
+    %p.lead
+      Graphics, including the goodbre.ws logo, were designed by
+      #{link_to 'Melissa Mays', 'http://melissamays.carbonmade.com/', :rel => 'nofollow', :target => '_blank'}.
