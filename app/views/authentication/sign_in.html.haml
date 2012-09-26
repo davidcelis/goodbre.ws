@@ -12,6 +12,10 @@
         Sign in to goodbre.ws
       %br/
 
+      - if notice
+        .text-error= notice
+        %br/
+
       .control-group{ :class => @login_error ? 'error' : '' }
         .controls
           %input{ :name => 'login', :placeholder => 'email or username', :type => 'text', :value => params[:login] }
