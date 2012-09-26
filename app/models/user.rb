@@ -11,7 +11,7 @@ class User < ActiveRecord::Base
   validates_exclusion_of :username, :in => %w( admin superuser root goodbrews guest ), :message => 'is reserved'
   validates_format_of :username, :with => /^\w+$/, :message => 'can only contain letters, numbers, and underscores'
   validates_uniqueness_of :username, :case_sensitive => false, :message => 'has already been taken'
-  validates_length_of :username, :within => 4..20
+  validates_length_of :username, :within => 1..20
   validates_presence_of :username
 
   validates_format_of :email, :with => /@/
