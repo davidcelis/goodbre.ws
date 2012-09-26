@@ -68,8 +68,10 @@ namespace :sphinx do
   end
 end
 
+before 'deploy', 'deploy:web:disable'
 after 'deploy:update_code', 'deploy:migrate'
 before 'deploy:update_code', 'thinking_sphinx:stop'
 after 'deploy:update_code', 'thinking_sphinx:start'
 after 'deploy:finalize_update', 'sphinx:symlink_indexes'
 after 'deploy', 'deploy:cleanup'
+after 'deploy', 'deploy:web:enable'
