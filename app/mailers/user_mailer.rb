@@ -16,4 +16,5 @@ class UserMailer < ActionMailer::Base
     @user = user
 
     mail :to => user.email, :subject => "Welcome to goodbre.ws!"
+  end
 end
