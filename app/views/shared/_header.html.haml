@@ -5,6 +5,9 @@
   .span3
     #current-user
       - if signed_in?
+        %a.btn{ :href => root_path }
+          %i.icon-home
+          Dashboard
         %a.btn{ :href => edit_account_path }
           %i.icon-cogs
           Settings
