@@ -17,8 +17,14 @@
 
 setEventsForPjax = ->
   $("a[rel=popover]").popover()
+
   $(".tooltip").tooltip()
   $("a[rel=tooltip]").tooltip()
+
+  $('.beer-actions button').tooltip
+    html: false
+    delay:
+      show: 500
 
   $('.beer-actions button').click ->
     action = $(this).attr('data-action')

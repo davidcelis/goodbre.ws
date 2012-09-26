@@ -9,4 +9,8 @@
 
     .tabbable
       = render :partial => 'tabs', :locals => { :active => params[:action] }
-      = render :partial => 'beers/table', :locals => { :beers => @beers }
+
+      - if @message
+        .lead= @message
+      - else
+        = render :partial => 'beers/table', :locals => { :beers => @beers }
