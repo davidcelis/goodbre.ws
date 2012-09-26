@@ -22,7 +22,7 @@
           %i.icon-user
           Register
   .span3
-    #search
+    .search-form
       = form_tag beers_search_path, :method => :get, :class => 'form-search' do
         .input-append
           = text_field_tag 'q', params[:q], :placeholder => 'Search'

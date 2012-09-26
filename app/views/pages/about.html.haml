@@ -13,6 +13,13 @@
       you're going to (and what beers you should) try next! Using goodbre.ws is
       really easy:
 
+    .search-form.lead
+      = form_tag beers_search_path, :method => :get, :class => 'form-search' do
+        .input-prepend
+          %button.btn.add-on.search-button
+            %i.icon-search
+          = text_field_tag 'q', params[:q], :placeholder => 'Search for some beers'
+
     %p.lead.text-success
       %i.icon-thumbs-up
       Like some beers

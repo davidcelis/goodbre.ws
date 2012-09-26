@@ -46,7 +46,7 @@ p {
     text-align: right;
   }
 
-  #search {
+  .search-form {
     margin: 10px 0 0 0;
 
     form {
@@ -56,12 +56,18 @@ p {
         margin: 0 !important;
       }
 
-      button {
-        height: 30px;
-        position: relative;
+      .input-append, .input-prepend {
+        button {
+          height: 30px;
+          position: relative;
+        }
       }
     }
   }
+}
+
+.search-button {
+  height: 30px !important;
 }
 
 .addon {
