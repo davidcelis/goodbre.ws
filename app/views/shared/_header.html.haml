@@ -1,8 +1,8 @@
 .row-fluid
-  .span6
+  .span5
     #logo
       = link_to image_tag('logo_sm.png'), root_path
-  .span3
+  .span4
     #current-user
       - if signed_in?
         %a.btn{ :href => root_path }

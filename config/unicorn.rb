@@ -15,7 +15,7 @@ stdout_path "#{root}/log/unicorn.log"
 listen "/tmp/unicorn.goodbre.ws.sock"
 
 # 16 worker processes for production environment
-worker_processes 8
+worker_processes 16
 
 # Load rails before forking workers for better worker spawn time
 preload_app true
