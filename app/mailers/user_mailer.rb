@@ -1,5 +1,5 @@
 class UserMailer < ActionMailer::Base
-  default from: 'brewmaster@goodbre.ws'
+  default from: 'The Brewmaster <brewmaster@goodbre.ws>'
 
   # Subject can be set in your I18n file at config/locales/en.yml
   # with the following lookup:
