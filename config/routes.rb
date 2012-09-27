@@ -2,6 +2,12 @@ Goodbrews::Application.routes.draw do
   root :to => 'dashboard#index', :constraints => lambda { |request| request.cookies['auth_token'] }
   root :to => 'pages#welcome'
 
+  constraint = lambda { |request| request.cookies['auth_token'] && User.find_by_auth_token(request.cookies['auth_token']).username == 'davidcelis' }
+  constraints constraint do
+    require 'sidekiq/web'
+    mount Sidekiq::Web => '/sidekiq'
+  end
+
   resource :account, :controller => :account, :except => :show do
     collection do
       get  :sign_in, :controller  => :authentication, :action => :sign_in, :as => :sign_in
