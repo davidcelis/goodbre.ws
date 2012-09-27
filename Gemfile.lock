@@ -1,6 +1,6 @@
 GIT
   remote: git://github.com/davidcelis/recommendable.git
-  revision: 4c8b494e46aa8edb14b6167f6faf66759487dc4c
+  revision: 6012eba9dbc95c4005095f33ab00148e0cb0c549
   specs:
     recommendable (1.1.7)
       hooks (>= 0.2.1)
