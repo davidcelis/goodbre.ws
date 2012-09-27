@@ -16,6 +16,7 @@ gem 'haml'
 gem 'recommendable', :github => 'davidcelis/recommendable'
 gem 'kaminari'
 gem 'sidekiq'
+gem 'sidekiq-middleware'
 
 gem 'gravatar_image_tag'
 
