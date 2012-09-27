@@ -1,6 +1,6 @@
 GIT
   remote: git://github.com/davidcelis/recommendable.git
-  revision: 1ce8b19c9a6831d87d403fa9f4c882a2845bb30e
+  revision: 4c8b494e46aa8edb14b6167f6faf66759487dc4c
   specs:
     recommendable (1.1.7)
       hooks (>= 0.2.1)
@@ -105,8 +105,8 @@ GEM
       treetop (~> 1.4.8)
     method_source (0.8)
     mime-types (1.19)
-    miniskirt (1.2)
-      activesupport (>= 2.2)
+    miniskirt (1.2.1)
+      activesupport
     minitest (3.5.0)
     minitest-capybara (0.1.0)
       capybara (>= 1.0)
