@@ -12,7 +12,7 @@ Recommendable.configure do |config|
   # You should set this value to how long it takes for a worker process to complete.
   # Set to false if you do not wish to expire these keys. Set to :destroy if they
   # can immediately be torn down (you do not have concurrent workers)
-  config.expire_keys_in = 2.hours
+  config.expire_keys_in = false
 
   # Configure the name of your Sidekiq or Resque queue
   config.queue_name = :recommendable
