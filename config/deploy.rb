@@ -23,16 +23,28 @@ set :default_environment, {
 }
 
 namespace :deploy do
-  %w[start stop restart].each do |command|
-    desc "#{command} unicorn server"
-    task command, roles: :app, except: {no_release: true} do
-      run "/etc/init.d/unicorn_#{application} #{command}" # Using unicorn as the app server
-    end
+  desc 'Start puma server'
+  task :start, :roles => :app, :except => { :no_release => true } do
+    run "cd #{current_path} && bundle exec puma -C config/puma.rb --control unix:///tmp/pumactl.sock >> #{shared_path}/log/puma-production.log 2>&1 &", :pty => false
+  end
+
+  desc 'Stop puma server'
+  task :stop, :roles => :app, :except => { :no_release => true } do
+    run "cd #{current_path} && bundle exec pumactl -S #{shared_path}/pids/puma.state stop"
+  end
+
+  desc 'Restart puma server'
+  task :restart, :roles => :app, :except => { :no_release => true } do
+    run "cd #{current_path} && bundle exec pumactl -S #{shared_path}/pids/puma.state restart"
+  end
+
+  desc 'Get status of puma server'
+  task :status, :roles => :app, :except => { :no_release => true } do
+    run "cd #{current_path} && bundle exec pumactl -S #{shared_path}/pids/puma.state stats"
   end
 
   task :setup_config, roles: :app do
     sudo "ln -nfs #{current_path}/config/nginx.conf /etc/nginx/sites-enabled/#{application}"
-    sudo "ln -nfs #{current_path}/config/unicorn_ini.sh /etc/init.d/unicorn_#{application}"
     run "mkdir -p #{shared_path}/config/initializers"
     put File.read("config/newrelic.yml"), "#{shared_path}/config/newrelic.yml"
     put File.read("config/database.yml"), "#{shared_path}/config/database.yml"
