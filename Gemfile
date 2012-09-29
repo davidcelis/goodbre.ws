@@ -17,7 +17,7 @@ gem 'recommendable', :github => 'davidcelis/recommendable'
 gem 'kaminari'
 
 gem 'sidekiq'
-gem 'sidekiq-middleware'
+gem 'sidekiq-unique-jobs'
 gem 'sinatra', :require => nil
 gem 'slim', '<= 1.3.0'
 
