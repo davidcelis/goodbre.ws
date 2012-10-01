@@ -3,7 +3,7 @@ class DashboardController < ApplicationController
 
   # GET /dashboard
   def index
-    @beers = Beer.top(10)
+    @beers = Beer.page(params[:page]).top(100)
     render :dashboard
   end
 
