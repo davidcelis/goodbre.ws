@@ -39,7 +39,7 @@ class DashboardController < ApplicationController
   # GET /dashboard/fridge
   def fridge
     @beers = current_user.stashed_beers.includes(:brewery, :style).page(params[:page])
-    @message = "Click the bookmark on beers you're planning to try next, especially if you've already got 'em!"
+    @message = "Click the bookmark on beers you're planning to try next, especially if you've already got 'em!" if @beers.empty?
     render :dashboard
   end
 
