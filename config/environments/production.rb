@@ -74,5 +74,5 @@ Goodbrews::Application.configure do
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = YAML.load_file(Rails.root.join('config', 'smtp.yml')).try(:to_options)
 
-  GA.tracker = YAML.load_file(Rails.root.join('config', 'analytics.yml'))
+  # GA.tracker = YAML.load_file(Rails.root.join('config', 'analytics.yml'))
 end
