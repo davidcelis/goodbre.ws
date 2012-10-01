@@ -46,6 +46,7 @@ namespace :deploy do
   task :setup_config, roles: :app do
     sudo "ln -nfs #{current_path}/config/nginx.conf /etc/nginx/sites-enabled/#{application}"
     run "mkdir -p #{shared_path}/config/initializers"
+    put File.read("config/analytics.yml"), "#{shared_path}/config/analytics.yml"
     put File.read("config/newrelic.yml"), "#{shared_path}/config/newrelic.yml"
     put File.read("config/database.yml"), "#{shared_path}/config/database.yml"
     put File.read("config/smtp.yml"), "#{shared_path}/config/smtp.yml"
@@ -55,6 +56,7 @@ namespace :deploy do
   after "deploy:setup", "deploy:setup_config"
 
   task :symlink_config, roles: :app do
+    run "ln -nfs #{shared_path}/config/analytics.yml #{release_path}/config/analytics.yml"
     run "ln -nfs #{shared_path}/config/newrelic.yml #{release_path}/config/newrelic.yml"
     run "ln -nfs #{shared_path}/config/database.yml #{release_path}/config/database.yml"
     run "ln -nfs #{shared_path}/config/smtp.yml #{release_path}/config/smtp.yml"

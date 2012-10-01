@@ -10,6 +10,7 @@ gem 'capistrano'
 gem 'newrelic_rpm'
 
 gem 'twitter-bootstrap-rails'
+gem 'google-analytics-rails'
 gem 'jquery-rails'
 gem 'haml'
 

@@ -25,6 +25,7 @@ vendor/bundle
 config/smtp.yml
 config/database.yml
 config/newrelic.yml
+config/analytics.yml
 config/initializers/secret_token.rb
 
 # Ignore development-specific files
