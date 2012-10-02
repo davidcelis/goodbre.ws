@@ -7,9 +7,10 @@
       Dashboard
     %br/
 
-    .alert.alert-info
-      = notice
-      %a.close{ 'data-dismiss' => 'alert', :href => "#" } &times;
+    - if notice
+      .alert.alert-info
+        = notice
+        %a.close{ 'data-dismiss' => 'alert', :href => "#" } &times;
 
     .tabbable
       = render :partial => 'tabs', :locals => { :active => params[:action] }
