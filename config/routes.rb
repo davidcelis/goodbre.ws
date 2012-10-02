@@ -48,6 +48,13 @@ Goodbrews::Application.routes.draw do
     get :discontinued, :on => :member
   end
 
+  %w[beer brewery].each do |model|
+    get  "#{model.pluralize}/suggested"   => "temp_#{model.pluralize}#index",   :as => "suggested_#{model.pluralize}"
+    get  "#{model.pluralize}/suggest"     => "temp_#{model.pluralize}#new",     :as => "new_suggested_#{model}"
+    post "#{model.pluralize}"             => "temp_#{model.pluralize}#create",  :as => "create_suggested_#{model}"
+    post "#{model.pluralize}/:id/approve" => "temp_#{model.pluralize}#approve", :as => "approve_suggested_#{model}"
+  end
+
   resources :users, :only => :show do
     member do
       get :recommendations

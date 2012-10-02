@@ -1,6 +1,7 @@
 class Brewery < ActiveRecord::Base
   attr_accessible :description, :name, :permalink, :website
   has_many :beers
+  has_many :temp_beers
 
   before_create :set_permalink
   validates_presence_of :name

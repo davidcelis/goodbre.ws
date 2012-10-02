@@ -18,6 +18,11 @@ class ApplicationController < ActionController::Base
     redirect_to sign_in_account_path, :alert => 'Please sign in to continue.' unless signed_in?
   end
 
+  # lol
+  def ensure_admin!
+    current_user.username == 'davidcelis'
+  end
+
   helper_method :current_user, :signed_in?
 
   def set_layout

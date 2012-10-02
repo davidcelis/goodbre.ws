@@ -1,5 +1,5 @@
 class Beer < ActiveRecord::Base
-  attr_accessible :abv, :description, :discontinued, :name
+  attr_accessible :abv, :description, :discontinued, :name, :brewery_id
   belongs_to :brewery
   belongs_to :style
 

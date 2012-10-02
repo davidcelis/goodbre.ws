@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120921220039) do
+ActiveRecord::Schema.define(:version => 20121002004529) do
 
   create_table "beers", :force => true do |t|
     t.integer  "brewery_id"
@@ -98,6 +98,28 @@ ActiveRecord::Schema.define(:version => 20120921220039) do
   end
 
   add_index "styles", ["permalink"], :name => "index_styles_on_permalink"
+
+  create_table "temp_beers", :force => true do |t|
+    t.integer  "brewery_id"
+    t.integer  "temp_brewery_id"
+    t.string   "name"
+    t.float    "abv"
+    t.integer  "style_id"
+    t.boolean  "discontinued"
+    t.datetime "created_at",      :null => false
+    t.datetime "updated_at",      :null => false
+  end
+
+  add_index "temp_beers", ["style_id"], :name => "index_temp_beers_on_style_id"
+  add_index "temp_beers", ["temp_brewery_id"], :name => "index_temp_beers_on_temp_brewery_id"
+
+  create_table "temp_breweries", :force => true do |t|
+    t.string   "name"
+    t.boolean  "closed"
+    t.string   "website"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
 
   create_table "users", :force => true do |t|
     t.string   "username",               :null => false
