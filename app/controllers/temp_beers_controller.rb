@@ -33,7 +33,8 @@ class TempBeersController < ApplicationController
       :name => @temp_beer.name,
       :abv => @temp_beer.abv,
       :discontinued => @temp_beer.discontinued,
-      :brewery_id => @temp_beer.brewery_id
+      :brewery_id => @temp_beer.brewery_id,
+      :style_id => @temp_beer.style_id
     )
 
     if @beer.save
