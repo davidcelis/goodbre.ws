@@ -13,3 +13,8 @@
     .tabbable
       = render :partial => 'tabs', :locals => { :active => params[:action], :query => params[:q] }
       = render :partial => 'beers/table', :locals => { :beers => @beers }
+
+    %p
+      %a.btn.btn-small{ :href => new_suggested_beer_path }
+        %i.icon-plus
+        Suggest a new beer

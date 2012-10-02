@@ -1,0 +1,46 @@
+.span3
+  #sidebar
+    = image_tag 'b.png'
+    %h1 New Beer
+
+.span9
+  #content
+    = form_for @temp_beer, :url => create_suggested_beer_path, :html => { :class => 'well' } do |f|
+      %h1
+        %i.icon-plus
+        Suggest a new beer
+      %br/
+
+      .control-group{ :class => @temp_beer.errors[:name].any? ? 'error' : '' }
+        .controls
+          %input{ :name => 'temp_beer[name]', :placeholder => 'name', :type => 'text', :value => @temp_beer.name }
+          %span.help-inline= @temp_beer.errors[:name].join(' and ')
+      .control-group{ :class => @temp_beer.errors[:abv].any? ? 'error' : '' }
+        .controls
+          .input-append.pull-left
+            %input{ :name => 'temp_beer[abv]', :placeholder => 'abv', :type => 'text', :value => @temp_beer.abv }
+            %span.add-on %
+          %span.help-inline= @temp_beer.errors[:abv].join(' and ')
+      .control-group{ :class => @temp_beer.errors[:discontinued].any? ? 'error' : '' }
+        .controls
+          %label.checkbox
+            Discontinued?
+            = f.check_box :discontinued
+      .control-group{ :class => @temp_beer.errors[:style].any? ? 'error' : '' }
+        .controls
+          = select_tag 'beer[style_id]', options_from_collection_for_select(@styles, :id, :name), :prompt => 'Style', :class => 'combobox'
+      .control-group{ :class => @temp_beer.errors[:brewery].any? ? 'error' : '' }
+        .controls
+          = select_tag 'beer[brewery_id]', options_from_collection_for_select(@breweries, :id, :name), :prompt => 'Brewery', :class => 'combobox'
+
+          %br/
+
+          If the brewery does not appear, please
+          %a.btn.btn-mini{ :href => new_suggested_brewery_path }
+            %i.icon-plus
+            add it
+
+      %br/
+
+      %button.btn
+        Submit

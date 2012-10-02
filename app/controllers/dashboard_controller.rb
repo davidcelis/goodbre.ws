@@ -3,7 +3,7 @@ class DashboardController < ApplicationController
 
   # GET /dashboard
   def index
-    @beers = Beer.page(params[:page]).top(100)
+    @beers = Kaminari.paginate_array(Beer.top(100)).page(params[:page]).per(25)
     render :dashboard
   end
 

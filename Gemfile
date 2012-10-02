@@ -8,6 +8,7 @@ gem 'puma'
 
 gem 'capistrano'
 gem 'newrelic_rpm'
+#gem 'god'
 
 gem 'twitter-bootstrap-rails'
 gem 'google-analytics-rails'

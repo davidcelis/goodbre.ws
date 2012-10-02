@@ -44,15 +44,16 @@ Goodbrews::Application.routes.draw do
     end
   end
 
-  resources :breweries, :only => :show do
-    get :discontinued, :on => :member
+  %w[beer brewery].each do |model|
+    get  "#{model.pluralize}/suggested"     => "temp_#{model.pluralize}#index",   :as => "suggested_#{model.pluralize}"
+    get  "#{model.pluralize}/suggest"       => "temp_#{model.pluralize}#new",     :as => "new_suggested_#{model}"
+    post "#{model.pluralize}"               => "temp_#{model.pluralize}#create",  :as => "create_suggested_#{model}"
+    post "#{model.pluralize}/:id/approve"   => "temp_#{model.pluralize}#approve", :as => "approve_suggested_#{model}"
+    delete "#{model.pluralize}/:id/dismiss" => "temp_#{model.pluralize}#dismiss", :as => "dismiss_suggested_#{model}"
   end
 
-  %w[beer brewery].each do |model|
-    get  "#{model.pluralize}/suggested"   => "temp_#{model.pluralize}#index",   :as => "suggested_#{model.pluralize}"
-    get  "#{model.pluralize}/suggest"     => "temp_#{model.pluralize}#new",     :as => "new_suggested_#{model}"
-    post "#{model.pluralize}"             => "temp_#{model.pluralize}#create",  :as => "create_suggested_#{model}"
-    post "#{model.pluralize}/:id/approve" => "temp_#{model.pluralize}#approve", :as => "approve_suggested_#{model}"
+  resources :breweries, :only => :show do
+    get :discontinued, :on => :member
   end
 
   resources :users, :only => :show do

@@ -14,10 +14,12 @@
 #= require jquery_ujs
 #= require jquery.pjax
 #= require twitter/bootstrap
+#= require bootstrap-combobox
+#= require bootstrap-typeahead
 
 setEventsForPjax = ->
   $("a[rel=popover]").popover()
-
+  $('.combobox').combobox(items: 10)
   $(".tooltip").tooltip()
   $("a[rel=tooltip]").tooltip()
 

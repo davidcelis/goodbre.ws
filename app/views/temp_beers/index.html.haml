@@ -1,0 +1,40 @@
+.span3
+  #sidebar
+    = image_tag 'b.png'
+    %h1 New Beers
+
+.span9
+  #content
+    %h1
+      %i.icon-plus
+      Beer Suggestions
+    %br/
+
+    .tab-content
+      #beers.tab-pane.active
+        %table.table.table-striped
+          %tr
+            %th Name
+            %th ABV
+            %th Style
+            %th Brewery
+            %th
+            %th
+          - @temp_beers.each do |beer|
+            %tr
+              %td= beer.name
+              %td= beer.abv
+              %td= beer.style.try(:name)
+              - if beer.brewery
+                %td= link_to beer.brewery.name, brewery_path(beer.brewery.permalink)
+              - else
+                %td Temp
+              %td
+                %a.btn.btn-small{ :href => approve_suggested_beer_path(beer), 'data-method' => :post }
+                  Approve
+              %td
+                %a.btn.btn-small.btn-danger{ :href => dismiss_suggested_beer_path(beer), 'data-method' => :delete}
+
+        .center
+          = paginate @temp_beers
+

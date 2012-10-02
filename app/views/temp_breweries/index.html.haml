@@ -1,0 +1,33 @@
+.span3
+  #sidebar
+    = image_tag 'b.png'
+    %h1 New Breweries
+
+.span9
+  #content
+    %h1
+      %i.icon-plus
+      Brewery Suggestions
+    %br/
+
+    .tab-content
+      #breweries.tab-pane.active
+        %table.table.table-striped
+          %tr
+            %th Name
+            %th Website
+            %th
+            %th
+          - @temp_breweries.each do |brewery|
+            %tr
+              %td= brewery.name
+              %td= brewery.website
+                %a.btn.btn-small{ :href => approve_suggested_brewery_path(brewery), 'data-method' => :post }
+                  Approve
+              %td
+                %a.btn.btn-small.btn-danger{ :href => dismiss_suggested_brewery_path(brewery), 'data-method' => :delete }
+                  Dismiss
+
+        .center
+          = paginate @temp_breweries
+

@@ -1,23 +1,28 @@
 class TempBeersController < ApplicationController
-  before_filter :ensure_admin!, :only => :approve
+  before_filter :ensure_admin!, :except => [:new, :create]
 
   # GET /beers/suggested
   def index
-    @beer = TempBeer.page(params[:page])
+    @temp_beers = TempBeer.page(params[:page])
   end
 
   # GET /beers/suggest
   def new
-    @beer = TempBeer.new
+    @temp_beer = TempBeer.new
+    @breweries = Brewery.select([:id, :name])
+    @styles = Style.select([:id, :name])
   end
 
   # POST /beers/
   def create
-    @beer = TempBeer.new(params[:temp_beer])
+    @temp_beer = TempBeer.new(params[:temp_beer])
+    @temp_beer.brewery = Brewery.where(:name => params[:brewery]).first
 
-    if @beer.save
-      redirect_to suggested_beers_path
+    if @temp_beer.save
+      redirect_to root_path, :notice => "Thanks! We'll review this soon."
     else
+      @breweries = Brewery.select([:id, :name])
+      @styles = Style.select([:id, :name])
       render :new, :status => :unprocessable_entity
     end
   end
@@ -34,9 +39,16 @@ class TempBeersController < ApplicationController
 
     if @beer.save
       @temp_beer.destroy
-      head :ok
+      redirect_to suggested_beers_path
     else
       head :unprocessable_entity
     end
+  end
+
+  # DELETE /beers/:id/dismiss
+  def dismiss
+    TempBeer.find(params[:id]).destroy
+
+    redirect_to suggested_beers_path
   end
 end
