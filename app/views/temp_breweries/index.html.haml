@@ -22,6 +22,7 @@
             %tr
               %td= brewery.name
               %td= brewery.website
+              %td
                 %a.btn.btn-small{ :href => approve_suggested_brewery_path(brewery), 'data-method' => :post }
                   Approve
               %td

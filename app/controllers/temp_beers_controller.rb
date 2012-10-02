@@ -10,7 +10,7 @@ class TempBeersController < ApplicationController
   def new
     @temp_beer = TempBeer.new
     @breweries = Brewery.select([:id, :name])
-    @styles = Style.select([:id, :name])
+    @styles = Style.where('id > 2').select([:id, :name])
   end
 
   # POST /beers/
@@ -21,7 +21,7 @@ class TempBeersController < ApplicationController
       redirect_to root_path, :notice => "Thanks! We'll review this soon."
     else
       @breweries = Brewery.select([:id, :name])
-      @styles = Style.select([:id, :name])
+      @styles = Style.where('id > 2').select([:id, :name])
       render :new, :status => :unprocessable_entity
     end
   end
