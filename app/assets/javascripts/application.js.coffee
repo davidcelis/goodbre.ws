@@ -22,6 +22,7 @@ setEventsForPjax = ->
   $('.combobox').combobox(items: 10)
   $(".tooltip").tooltip()
   $("a[rel=tooltip]").tooltip()
+  $('.alert').alert()
 
   $('.beer-actions button').tooltip
     html: false

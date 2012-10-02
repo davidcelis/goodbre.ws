@@ -16,7 +16,6 @@ class TempBeersController < ApplicationController
   # POST /beers/
   def create
     @temp_beer = TempBeer.new(params[:temp_beer])
-    @temp_beer.brewery = Brewery.where(:name => params[:brewery]).first
 
     if @temp_beer.save
       redirect_to root_path, :notice => "Thanks! We'll review this soon."

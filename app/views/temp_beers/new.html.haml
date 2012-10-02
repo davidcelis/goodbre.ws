@@ -28,10 +28,10 @@
             = f.check_box :discontinued
       .control-group{ :class => @temp_beer.errors[:style].any? ? 'error' : '' }
         .controls
-          = select_tag 'beer[style_id]', options_from_collection_for_select(@styles, :id, :name), :prompt => 'Style', :class => 'combobox'
+          = select_tag 'temp_beer[style_id]', options_from_collection_for_select(@styles, :id, :name), :prompt => 'Style', :class => 'combobox'
       .control-group{ :class => @temp_beer.errors[:brewery].any? ? 'error' : '' }
         .controls
-          = select_tag 'beer[brewery_id]', options_from_collection_for_select(@breweries, :id, :name), :prompt => 'Brewery', :class => 'combobox'
+          = select_tag 'temp_beer[brewery_id]', options_from_collection_for_select(@breweries, :id, :name), :prompt => 'Brewery', :class => 'combobox'
 
           %br/
 
