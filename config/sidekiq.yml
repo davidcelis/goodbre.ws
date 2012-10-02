@@ -3,6 +3,7 @@
 #   sidekiq -C config.yml
 ---
 :verbose: false
-:concurrency:  25
+:concurrency: 25
 :queues:
   - [recommendable, 1]
+  - [recommendable_priority, 5]
