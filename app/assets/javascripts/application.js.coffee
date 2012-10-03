@@ -37,12 +37,18 @@ setEventsForPjax = ->
       when 'like', 'dislike', 'stash', 'ignore'
         method = 'POST'
         newAction = "un#{action}"
+        offset = 1 if action is 'like' or action is 'dislike'
       when 'unlike', 'undislike', 'unstash', 'unignore'
         method = 'DELETE'
         newAction = action.replace('un', '')
+        offset = -1 if action is 'unlike' or action is 'undislike'
         action = newAction
       else
         return
+
+    if offset
+      oldCount = parseInt $(this).children("span.#{action}-count").html()
+      $(this).children("span.#{action}-count").html(oldCount + offset)
 
     klass = 'btn-success' if action is 'like'    or action is 'unlike'
     klass = 'btn-danger'  if action is 'dislike' or action is 'undislike'
