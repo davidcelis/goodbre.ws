@@ -13,7 +13,7 @@ class DashboardController < ApplicationController
 
     if @beers.empty?
       if current_user.rated_anything?
-        @message = "Sorry, we're still working on getting you recommendations! Check back soon!"
+        @message = "Not seeing recommendations yet? Please see <a href='http://davidcelis.com/blog/2012/10/03/the-state-of-recommendations-in-goodbrews/' target='_blank' rel='nofollow'>this note</a> for more info."
       else
         @message = "Rate a beer so we can start working on your recommendations! Search for a beer using the bar at the top."
       end

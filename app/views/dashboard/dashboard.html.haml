@@ -16,6 +16,6 @@
       = render :partial => 'tabs', :locals => { :active => params[:action] }
 
       - if @message
-        .lead= @message
+        .lead.table-note!= @message
       - else
         = render :partial => 'beers/table', :locals => { :beers => @beers }
