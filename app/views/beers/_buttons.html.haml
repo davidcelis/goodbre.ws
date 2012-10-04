@@ -1,28 +1,28 @@
 .btn-group.beer-actions
   - if current_user.likes?(beer)
-    %button.btn.btn-success.unlike-button{ :data => { :id => beer.id, :action => :unlike, 'original-title' => 'Unlike' } }
+    %button.btn.btn-success.like-button{ :data => { :id => beer.id, :action => :unlike, 'original-title' => 'Unlike' } }
       %i.icon-thumbs-up
-      %span.like-count= beer.likes_count
+      %span.like-count.pull-right= beer.likes_count
   - else
     %button.btn.like-button{ :data => { :id => beer.id, :action => :like, 'original-title' => 'Like' } }
       %i.icon-thumbs-up
-      %span.like-count= beer.likes_count
+      %span.like-count.pull-right= beer.likes_count
   - if current_user.dislikes?(beer)
-    %button.btn.btn-danger.undislike-button{ :data => { :id => beer.id, :action => :undislike, 'original-title' => 'Undislike' } }
+    %button.btn.btn-danger.dislike-button{ :data => { :id => beer.id, :action => :undislike, 'original-title' => 'Undislike' } }
       %i.icon-thumbs-down
-      %span.dislike-count= beer.dislikes_count
+      %span.dislike-count.pull-right= beer.dislikes_count
   - else
     %button.btn.dislike-button{ :data => { :id => beer.id, :action => :dislike, 'original-title' => 'Dislike' } }
       %i.icon-thumbs-down
-      %span.dislike-count= beer.dislikes_count
+      %span.dislike-count.pull-right= beer.dislikes_count
   - if current_user.stashed?(beer)
-    %button.btn.btn-primary.unstash-button{ :data => { :id => beer.id, :action => :unstash, 'original-title' => 'Remove from fridge' } }
+    %button.btn.btn-primary.fridge-button{ :data => { :id => beer.id, :action => :unstash, 'original-title' => 'Remove from fridge' } }
       %i.icon-bookmark
   - else
-    %button.btn.stash-button{ :data => { :id => beer.id, :action => :stash, 'original-title' => 'Put in fridge' } }
+    %button.btn.fridge-button{ :data => { :id => beer.id, :action => :stash, 'original-title' => 'Put in fridge' } }
       %i.icon-bookmark
   - if current_user.ignored?(beer)
-    %button.btn.btn-warning.unignore-button{ :data => { :id => beer.id, :action => :unignore, 'original-title' => 'Unhide' } }
+    %button.btn.btn-warning.ignore-button{ :data => { :id => beer.id, :action => :unignore, 'original-title' => 'Unhide' } }
       %i.icon-eye-close
   - else
     %button.btn.ignore-button{ :data => { :id => beer.id, :action => :ignore, 'original-title' => 'Hide' } }

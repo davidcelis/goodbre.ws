@@ -17,6 +17,9 @@
 #= require bootstrap-combobox
 #= require bootstrap-typeahead
 
+String.prototype.capitalize = ->
+  return this.charAt(0).toUpperCase() + this.slice(1);
+
 setEventsForPjax = ->
   $("a[rel=popover]").popover()
   $('.combobox').combobox(items: 10)
@@ -46,10 +49,6 @@ setEventsForPjax = ->
       else
         return
 
-    if offset
-      oldCount = parseInt $(this).children("span.#{action}-count").html()
-      $(this).children("span.#{action}-count").html(oldCount + offset)
-
     klass = 'btn-success' if action is 'like'    or action is 'unlike'
     klass = 'btn-danger'  if action is 'dislike' or action is 'undislike'
     klass = 'btn-primary' if action is 'stash'   or action is 'unstash'
@@ -60,11 +59,16 @@ setEventsForPjax = ->
       success: (data) =>
         for button in $(this).siblings()
           do (button) ->
-            $(button).removeClass()
-            $(button).addClass('btn')
+            $(button).removeClass('btn-success btn-danger btn-primary btn-warning')
+            $(button).addClass('btn disabled')
             replacement = $(button).attr('data-action').replace('un', '')
             $(button).attr('data-action', replacement)
 
+        if offset
+          oldCount = parseInt $(this).children("span.#{action}-count").html()
+          $(this).children("span.#{action}-count").html(oldCount + offset)
+
+        $(this).attr('data-original-title', newAction.capitalize())
         $(this).toggleClass(klass)
         $(this).attr('data-action', newAction)
       error: =>
