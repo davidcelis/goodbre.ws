@@ -32,47 +32,109 @@ setEventsForPjax = ->
     delay:
       show: 500
 
+  # Yes, there's considerable duplication here. However, trying to alleviate
+  # that led to what I believed to be some pretty unreadable CoffeeScript, and
+  # I prefer readability to terseness.
   $('.beer-actions button').click ->
     action = $(this).attr('data-action')
     id     = $(this).attr('data-id')
 
     switch action
-      when 'like', 'dislike', 'stash', 'ignore'
-        method = 'POST'
-        newAction = "un#{action}"
-        offset = 1 if action is 'like' or action is 'dislike'
-      when 'unlike', 'undislike', 'unstash', 'unignore'
-        method = 'DELETE'
-        newAction = action.replace('un', '')
-        offset = -1 if action is 'unlike' or action is 'undislike'
-        action = newAction
-      else
-        return
+      when 'like'
+        $.ajax("/beers/#{id}/like",
+          type: 'POST'
+          success: (data) =>
+            $(this).addClass('btn-success')
+            $(this).attr('data-action', 'unlike')
+            $(this).attr('data-original-title', 'Unlike')
 
-    klass = 'btn-success' if action is 'like'    or action is 'unlike'
-    klass = 'btn-danger'  if action is 'dislike' or action is 'undislike'
-    klass = 'btn-primary' if action is 'stash'   or action is 'unstash'
-    klass = 'btn-warning' if action is 'ignore'  or action is 'unignore'
+            count = parseInt $(this).children('span.like-count').html()
+            $(this).children('span.like-count').html(count + 1)
 
-    $.ajax("/beers/#{id}/#{action}",
-      type: method
-      success: (data) =>
-        for button in $(this).siblings()
-          do (button) ->
-            $(button).removeClass('btn-success btn-danger btn-primary btn-warning')
-            $(button).addClass('btn disabled')
-            replacement = $(button).attr('data-action').replace('un', '')
-            $(button).attr('data-action', replacement)
+            $(this).siblings().prop('disabled', true)
+            # $(this).siblings('.fridge-button').prop('disabled', false)
+        )
+      when 'unlike'
+        $.ajax("/beers/#{id}/like",
+          type: 'DELETE'
+          success: (data) =>
+            $(this).removeClass('btn-success')
+            $(this).attr('data-action', 'like')
+            $(this).attr('data-original-title', 'Like')
 
-        if offset
-          oldCount = parseInt $(this).children("span.#{action}-count").html()
-          $(this).children("span.#{action}-count").html(oldCount + offset)
+            count = parseInt $(this).children('span.like-count').html()
+            $(this).children('span.like-count').html(count - 1)
 
-        $(this).attr('data-original-title', newAction.capitalize())
-        $(this).toggleClass(klass)
-        $(this).attr('data-action', newAction)
-      error: =>
-        console.log('hi'))
+            $(this).siblings().prop('disabled', false)
+        )
+      when 'dislike'
+        $.ajax("/beers/#{id}/dislike",
+          type: 'POST'
+          success: (data) =>
+            $(this).addClass('btn-danger')
+            $(this).attr('data-action', 'undislike')
+            $(this).attr('data-original-title', 'Undislike')
+
+            count = parseInt $(this).children('span.dislike-count').html()
+            $(this).children('span.dislike-count').html(count + 1)
+
+            $(this).siblings().prop('disabled', true)
+            # $(this).siblings('.fridge-button').prop('disabled', false)
+        )
+      when 'undislike'
+        $.ajax("/beers/#{id}/dislike",
+          type: 'DELETE'
+          success: (data) =>
+            $(this).removeClass('btn-danger')
+            $(this).attr('data-action', 'dislike')
+            $(this).attr('data-original-title', 'Dislike')
+
+            count = parseInt $(this).children('span.dislike-count').html()
+            $(this).children('span.dislike-count').html(count - 1)
+
+            $(this).siblings().prop('disabled', false)
+        )
+      when 'stash'
+        $.ajax("/beers/#{id}/stash",
+          type: 'POST'
+          success: (data) =>
+            $(this).addClass('btn-primary')
+            $(this).attr('data-action', 'unstash')
+            $(this).attr('data-original-title', 'Remove from fridge')
+
+            $(this).siblings().prop('disabled', true)
+            # $(this).siblings('.ignore-button').prop('disabled', true)
+        )
+      when 'unstash'
+        $.ajax("/beers/#{id}/stash",
+          type: 'DELETE'
+          success: (data) =>
+            $(this).removeClass('btn-primary')
+            $(this).attr('data-action', 'stash')
+            $(this).attr('data-original-title', 'Put in fridge')
+
+            $(this).siblings().prop('disabled', false)
+        )
+      when 'ignore'
+        $.ajax("/beers/#{id}/ignore",
+          type: 'POST'
+          success: (data) =>
+            $(this).addClass('btn-warning')
+            $(this).attr('data-action', 'unignore')
+            $(this).attr('data-original-title', 'Unhide')
+
+            $(this).siblings().prop('disabled', true)
+        )
+      when 'unignore'
+        $.ajax("/beers/#{id}/ignore",
+          type: 'DELETE'
+          success: (data) =>
+            $(this).removeClass('btn-warning')
+            $(this).attr('data-action', 'ignore')
+            $(this).attr('data-original-title', 'Hide')
+
+            $(this).siblings().prop('disabled', false)
+        )
 
 $ ->
   setEventsForPjax()
