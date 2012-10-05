@@ -8,7 +8,6 @@ gem 'puma'
 
 gem 'capistrano'
 gem 'newrelic_rpm'
-#gem 'god'
 
 gem 'twitter-bootstrap-rails'
 gem 'google-analytics-rails'
@@ -39,4 +38,5 @@ group :development, :test do
   gem 'minitest-rails-capybara'
   gem 'miniskirt'
   gem 'pry-rails'
+  gem 'pry-coolline'
 end

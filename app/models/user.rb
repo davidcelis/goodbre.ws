@@ -45,11 +45,11 @@ class User < ActiveRecord::Base
   end
 
   def self.from_param(param)
-    where(:username => param).first
+    where('username ILIKE ?', param).first
   end
 
   def self.find_by_login(login)
-    where('username = ? OR email = ?', login, login).first
+    where('username ILIKE ? OR email ILIKE ?', login, login).first
   end
 
   def self.paginate(options = {})
