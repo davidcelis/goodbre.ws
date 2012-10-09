@@ -15,7 +15,7 @@ class UsersController < ApplicationController
   # GET /users/:id/fridge
   def fridge
     @user = User.from_param params[:id]
-    @beers = @user.stashed_beers.includes(:brewery, :style).page(params[:page])
+    @beers = @user.bookmarked_beers.includes(:brewery, :style).page(params[:page])
     render :show
   end
 end

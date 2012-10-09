@@ -14,7 +14,7 @@ Goodbrews::Application.routes.draw do
       post :sign_in, :controller  => :authentication, :action => :authenticate, :as => :authenticate
       post :sign_out, :controller => :authentication, :action => :sign_out, :as => :sign_out
 
-      get  :ignored
+      get  :hidden
     end
   end
 
@@ -34,13 +34,13 @@ Goodbrews::Application.routes.draw do
   resources :beers, :only => [] do
     member do
       post   :like
-      delete :like,    :action => :unlike,    :as => :unlike
+      delete :like,     :action => :unlike,     :as => :unlike
       post   :dislike
-      delete :dislike, :action => :undislike, :as => :undislike
-      post   :ignore
-      delete :ignore,  :action => :unignore,  :as => :unignore
-      post   :stash
-      delete :stash,   :action => :unstash,   :as => :unstash
+      delete :dislike,  :action => :undislike,  :as => :undislike
+      post   :hide
+      delete :hide,     :action => :unhide,     :as => :unhide
+      post   :bookmark
+      delete :bookmark, :action => :unbookmark, :as => :unbookmark
     end
   end
 

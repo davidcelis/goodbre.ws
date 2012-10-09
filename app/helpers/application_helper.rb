@@ -6,13 +6,13 @@ module ApplicationHelper
     else
       klass  = 'btn like-button'
       action = 'like'
-      disabled = true if current_user.dislikes?(beer) || current_user.ignored?(beer) || current_user.stashed?(beer)
+      disabled = true if current_user.dislikes?(beer) || current_user.hides?(beer)
     end
 
     <<-BUTTON
 <button class='#{klass}' data-id='#{beer.id}' data-action='#{action}' data-original-title='#{action.capitalize}' #{'disabled' if disabled}>
   <i class='icon-thumbs-up'></i>
-  <span class='like-count pull-right'>#{beer.likes_count}</span>
+  <span class='like-count pull-right'>#{beer.liked_by_count}</span>
 </button>
     BUTTON
   end
@@ -24,27 +24,27 @@ module ApplicationHelper
     else
       klass  = 'btn dislike-button'
       action = 'dislike'
-      disabled = true if current_user.likes?(beer) || current_user.ignored?(beer) || current_user.stashed?(beer)
+      disabled = true if current_user.likes?(beer) || current_user.hides?(beer)
     end
 
     <<-BUTTON
 <button class='#{klass}' data-id='#{beer.id}' data-action='#{action}' data-original-title='#{action.capitalize}' #{'disabled' if disabled}>
   <i class='icon-thumbs-down'></i>
-  <span class='dislike-count pull-right'>#{beer.dislikes_count}</span>
+  <span class='dislike-count pull-right'>#{beer.disliked_by_count}</span>
 </button>
     BUTTON
   end
 
   def fridge_button(beer)
-    if current_user.stashed?(beer)
+    if current_user.bookmarks?(beer)
       klass  = 'btn fridge-button btn-primary'
-      action = 'unstash'
+      action = 'unbookmark'
       title  = 'Remove from fridge'
     else
       klass  = 'btn fridge-button'
-      action = 'stash'
+      action = 'bookmark'
       title  = 'Put in fridge'
-      disabled = true if current_user.ignored?(beer) || current_user.likes?(beer) || current_user.dislikes?(beer)
+      disabled = true if current_user.hides?(beer)
     end
 
     <<-BUTTON
@@ -55,15 +55,15 @@ module ApplicationHelper
   end
 
   def hide_button(beer)
-    if current_user.ignored?(beer)
-      klass  = 'btn ignore-button btn-warning'
-      action = 'unignore'
+    if current_user.hides?(beer)
+      klass  = 'btn hide-button btn-warning'
+      action = 'unhide'
       title  = 'Unhide'
     else
-      klass  = 'btn ignore-button'
-      action = 'ignore'
+      klass  = 'btn hide-button'
+      action = 'hide'
       title  = 'Hide'
-      disabled = true if current_user.likes?(beer) || current_user.dislikes?(beer) || current_user.stashed?(beer)
+      disabled = true if current_user.likes?(beer) || current_user.dislikes?(beer) || current_user.bookmarks?(beer)
     end
 
     <<-BUTTON
