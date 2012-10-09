@@ -52,7 +52,7 @@ setEventsForPjax = ->
             $(this).children('span.like-count').html(count + 1)
 
             $(this).siblings().prop('disabled', true)
-            # $(this).siblings('.fridge-button').prop('disabled', false)
+            $(this).siblings('.fridge-button').prop('disabled', false)
         )
       when 'unlike'
         $.ajax("/beers/#{id}/like",
@@ -79,7 +79,7 @@ setEventsForPjax = ->
             $(this).children('span.dislike-count').html(count + 1)
 
             $(this).siblings().prop('disabled', true)
-            # $(this).siblings('.fridge-button').prop('disabled', false)
+            $(this).siblings('.fridge-button').prop('disabled', false)
         )
       when 'undislike'
         $.ajax("/beers/#{id}/dislike",
@@ -94,43 +94,42 @@ setEventsForPjax = ->
 
             $(this).siblings().prop('disabled', false)
         )
-      when 'stash'
-        $.ajax("/beers/#{id}/stash",
+      when 'bookmark'
+        $.ajax("/beers/#{id}/bookmark",
           type: 'POST'
           success: (data) =>
             $(this).addClass('btn-primary')
-            $(this).attr('data-action', 'unstash')
+            $(this).attr('data-action', 'unbookmark')
             $(this).attr('data-original-title', 'Remove from fridge')
 
-            $(this).siblings().prop('disabled', true)
-            # $(this).siblings('.ignore-button').prop('disabled', true)
+            $(this).siblings('.hide-button').prop('disabled', true)
         )
-      when 'unstash'
-        $.ajax("/beers/#{id}/stash",
+      when 'unbookmark'
+        $.ajax("/beers/#{id}/bookmark",
           type: 'DELETE'
           success: (data) =>
             $(this).removeClass('btn-primary')
-            $(this).attr('data-action', 'stash')
+            $(this).attr('data-action', 'bookmark')
             $(this).attr('data-original-title', 'Put in fridge')
 
             $(this).siblings().prop('disabled', false)
         )
-      when 'ignore'
-        $.ajax("/beers/#{id}/ignore",
+      when 'hide'
+        $.ajax("/beers/#{id}/hide",
           type: 'POST'
           success: (data) =>
             $(this).addClass('btn-warning')
-            $(this).attr('data-action', 'unignore')
+            $(this).attr('data-action', 'unhide')
             $(this).attr('data-original-title', 'Unhide')
 
             $(this).siblings().prop('disabled', true)
         )
-      when 'unignore'
-        $.ajax("/beers/#{id}/ignore",
+      when 'unhide'
+        $.ajax("/beers/#{id}/hide",
           type: 'DELETE'
           success: (data) =>
             $(this).removeClass('btn-warning')
-            $(this).attr('data-action', 'ignore')
+            $(this).attr('data-action', 'hide')
             $(this).attr('data-original-title', 'Hide')
 
             $(this).siblings().prop('disabled', false)

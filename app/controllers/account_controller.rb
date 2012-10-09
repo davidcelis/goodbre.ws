@@ -1,5 +1,5 @@
 class AccountController < ApplicationController
-  before_filter :ensure_signed_in!, :only => [:edit, :update, :destroy, :ignored]
+  before_filter :ensure_signed_in!, :only => [:edit, :update, :destroy, :hidden]
   # GET /account/new
   def new
     @user = User.new
@@ -42,8 +42,8 @@ class AccountController < ApplicationController
     redirect_to welcome_path, :notice => 'Come back some day!'
   end
 
-  # GET /account/ignored
-  def ignored
-    @beers = current_user.ignored_beers.page(params[:page])
+  # GET /account/hidden
+  def hidden
+    @beers = current_user.hidden_beers.page(params[:page])
   end
 end

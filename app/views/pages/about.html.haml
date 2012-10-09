@@ -30,15 +30,16 @@
 
     %p.lead.text-info
       %i.icon-bookmark
-      Tell us (and friends) what you already know you're going to try next
+      Tell your friends what you've got in your fridge
 
     %p.lead.text-warning
       %i.icon-eye-close
       Tell us what beers you just don't care about
 
     %p.lead
-      You only need to rate one beer to get recommendations. However, please
-      give us a few hours to generate your very first recommendations.
+      You only need to rate one beer to get recommendations. In most cases, you
+      should get recommendations after a few minutes. However, depending on how
+      many people are currently using the site, it could take a bit longer.
       - unless signed_in?
         So #{link_to 'sign up', new_account_path} to get started!
 

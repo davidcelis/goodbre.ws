@@ -46,44 +46,44 @@ class BeersController < ApplicationController
     end
   end
 
-  # POST /beers/:id/ignore.json
-  def ignore
+  # POST /beers/:id/hide.json
+  def hide
     @beer = Beer.find params[:id]
 
-    if current_user.ignore @beer
+    if current_user.hide @beer
       head :ok
     else
       head :unprocessable_entity
     end
   end
 
-  # DELETE /beers/:id/ignore.json
-  def unignore
+  # DELETE /beers/:id/hide.json
+  def unhide
     @beer = Beer.find params[:id]
 
-    if current_user.unignore @beer
+    if current_user.unhide @beer
       head :ok
     else
       head :unprocessable_entity
     end
   end
 
-  # POST /beers/:id/stash.json
-  def stash
+  # POST /beers/:id/bookmark.json
+  def bookmark
     @beer = Beer.find params[:id]
 
-    if current_user.stash @beer
+    if current_user.bookmark @beer
       head :ok
     else
       head :unprocessable_entity
     end
   end
 
-  # DELETE /beers/:id/stash.json
-  def unstash
+  # DELETE /beers/:id/bookmark.json
+  def unbookmark
     @beer = Beer.find params[:id]
 
-    if current_user.unstash @beer
+    if current_user.unbookmark @beer
       head :ok
     else
       head :unprocessable_entity

@@ -14,7 +14,7 @@ gem 'google-analytics-rails'
 gem 'jquery-rails'
 gem 'haml'
 
-gem 'recommendable', :github => 'davidcelis/recommendable'
+gem 'recommendable'
 gem 'kaminari'
 
 gem 'sidekiq'
