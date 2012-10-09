@@ -1,3 +1,12 @@
+GIT
+  remote: git://github.com/davidcelis/recommendable.git
+  revision: e706631c94a0974d863198da955b859e3115e292
+  specs:
+    recommendable (2.0.0)
+      activesupport (>= 3.0.0)
+      hooks (>= 0.2.1)
+      redis (>= 2.2.0)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -163,10 +172,6 @@ GEM
     rake (0.9.2.2)
     rdoc (3.12)
       json (~> 1.4)
-    recommendable (2.0.0)
-      activesupport (>= 3.0.0)
-      hooks (>= 0.2.1)
-      redis (>= 2.2.0)
     redis (3.0.2)
     redis-namespace (1.2.1)
       redis (~> 3.0.0)
@@ -249,7 +254,7 @@ DEPENDENCIES
   pry-rails
   puma
   rails (= 3.2.8)
-  recommendable
+  recommendable!
   sass-rails
   sidekiq
   sidekiq-unique-jobs

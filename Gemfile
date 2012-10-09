@@ -14,13 +14,13 @@ gem 'google-analytics-rails'
 gem 'jquery-rails'
 gem 'haml'
 
-gem 'recommendable'
-gem 'kaminari'
-
 gem 'sidekiq'
 gem 'sidekiq-unique-jobs'
 gem 'sinatra', :require => nil
 gem 'slim', '<= 1.3.0'
+
+gem 'recommendable', :github => 'davidcelis/recommendable'
+gem 'kaminari'
 
 gem 'gravatar_image_tag'
 
