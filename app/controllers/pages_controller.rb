@@ -1,6 +1,7 @@
 class PagesController < ApplicationController
   # GET /welcome
   def welcome
+    @beers = Beer.includes(:brewery, :style).top(10)
   end
 
   # GET /about

@@ -21,4 +21,4 @@
     .tabbable
       %ul.nav.nav-tabs
         %li.active= link_to "Top 10 Beers", "#top-beers", 'data-toggle' => 'tab'
-      = render :partial => 'beers/table', :locals => { :beers => Beer.top(10) }
+      = render :partial => 'beers/table', :locals => { :beers => @beers }
