@@ -1,5 +1,6 @@
 require 'bundler/capistrano'
 require 'sidekiq/capistrano'
+require 'new_relic/recipes'
 require 'thinking_sphinx/deploy/capistrano'
 
 set :application, 'goodbre.ws'
@@ -92,3 +93,4 @@ after 'deploy:update_code', 'thinking_sphinx:start'
 after 'deploy:finalize_update', 'sphinx:symlink_indexes'
 after 'deploy', 'deploy:cleanup'
 after 'deploy', 'deploy:web:enable'
+after 'deploy:update', 'newrelic:notice_deployment'
