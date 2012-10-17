@@ -46,6 +46,13 @@ p {
     text-align: right;
   }
 
+  #logo {
+    img {
+      height: 42px;
+      width: 186px;
+    }
+  }
+
   .search-form {
     margin: 10px 0 0 0;
 
@@ -78,6 +85,22 @@ p {
   margin: 0;
 }
 
+#sidebar {
+  #b {
+    img {
+      width: 90px;
+      height: 155px;
+    }
+  }
+
+  #brewery-image {
+    img {
+      width: 117px;
+      height: 135px;
+    }
+  }
+}
+
 #sidebar, #content {
   padding: 20px;
 }
@@ -107,4 +130,18 @@ p {
 .like-button, .dislike-button {
   width: 77px !important;
   text-align: left;
+}
+
+#gravatar, .gravatar {
+  img {
+    height: 150px;
+    width: 150px;
+  }
+}
+
+.gravatar-small {
+  img {
+    height: 50px;
+    width: 50px;
+  }
 }

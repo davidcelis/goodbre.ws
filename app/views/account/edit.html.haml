@@ -32,7 +32,7 @@
               Update
 
           .span4
-            %p
+            %p#gravatar
               = gravatar_image_tag(current_user.email)
               #gravatar-button
                 %a.btn{ :href => 'http://gravatar.com/', :rel => 'nofollow', :target => '_blank' }

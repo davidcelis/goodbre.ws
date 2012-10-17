@@ -3,6 +3,6 @@ GravatarImageTag.configure do |config|
   config.filetype                = 'png'
   config.include_size_attributes = true
   config.rating                  = 'G'
-  config.size                    = 150
+  config.size                    = 300
   config.secure                  = true
 end
