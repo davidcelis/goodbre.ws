@@ -38,4 +38,5 @@ group :development, :test do
   gem 'miniskirt'
   gem 'pry-rails'
   gem 'pry-coolline'
+  gem 'quiet_assets'
 end
