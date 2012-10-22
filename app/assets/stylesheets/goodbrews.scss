@@ -64,6 +64,12 @@ p {
       }
 
       .input-append, .input-prepend {
+        width: 100%;
+
+        input {
+          width: 90%;
+        }
+
         button {
           height: 30px;
           position: relative;
