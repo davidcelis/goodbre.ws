@@ -17,4 +17,10 @@ class UserMailer < ActionMailer::Base
 
     mail :to => user.email, :subject => "Welcome to goodbre.ws!"
   end
+
+  def mailing_list(user)
+    @user = user
+
+    mail :to => user.email, :subject => 'goodbre.ws - better brews are waiting for you!'
+  end
 end
