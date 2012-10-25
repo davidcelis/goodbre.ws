@@ -26,6 +26,7 @@ setEventsForPjax = ->
   $(".tooltip").tooltip()
   $("a[rel=tooltip]").tooltip()
   $('.alert').alert()
+  $('input, textarea').placeholder() if typeof($().placeholder) == typeof(Function)
 
   $('.beer-actions button').tooltip
     html: false
