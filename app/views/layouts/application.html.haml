@@ -16,9 +16,7 @@
           = render :partial => 'shared/header'
 
     #application.row-fluid{ :'data-pjax-container' => true }
-      = ::NewRelic::Agent.browser_timing_header rescue nil
       = yield
-      = ::NewRelic::Agent.browser_timing_footer rescue nil
 
     #footer
       = render :partial => 'shared/footer'
