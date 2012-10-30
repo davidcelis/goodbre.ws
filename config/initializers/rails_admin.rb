@@ -339,3 +339,5 @@ RailsAdmin.config do |config|
   # end
 
 end
+
+RailsAdmin::ApplicationController.send(:newrelic_ignore)
