@@ -1,13 +1,15 @@
 # RailsAdmin config file. Generated on October 28, 2012 20:03
 # See github.com/sferik/rails_admin for more informations
 
+require 'rails_admin'
+
 RailsAdmin.config do |config|
 
 
   ################  Global configuration  ################
 
   # Set the admin name here (optional second array element will appear in red). For example:
-  config.main_app_name = ['Goodbrews', 'Admin']
+  config.main_app_name = ['goodbre.ws', 'Admin']
   # or for a more dynamic name:
   # config.main_app_name = Proc.new { |controller| [Rails.application.engine_name.titleize, controller.params['action'].titleize] }
 
