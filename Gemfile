@@ -9,6 +9,7 @@ gem 'puma'
 
 gem 'capistrano'
 gem 'newrelic_rpm'
+gem 'newrelic-redis'
 
 gem 'twitter-bootstrap-rails'
 gem 'google-analytics-rails'
