@@ -27,7 +27,7 @@ class ApplicationController < ActionController::Base
 
   def set_layout
     if request.headers['X-PJAX']
-      false
+      'pjax'
     else
       'application'
     end

@@ -1,0 +1,3 @@
+= ::NewRelic::Agent.browser_timing_header rescue '' if Rails.env.production?
+= yield
+= ::NewRelic::Agent.browser_timing_footer rescue '' if Rails.env.production?
