@@ -15,9 +15,9 @@
         #header.container-fluid
           = render :partial => 'shared/header'
 
-    #application.row-fluid{ :'data-pjax-container' => true }
+    #application{ :'data-pjax-container' => true }
       = ::NewRelic::Agent.browser_timing_header rescue '' if Rails.env.production?
-      = yield
+      .row-fluid= yield
       = ::NewRelic::Agent.browser_timing_footer rescue '' if Rails.env.production?
 
     #footer
