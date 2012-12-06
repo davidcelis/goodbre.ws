@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 
 gem 'thinking-sphinx', :require => 'thinking_sphinx'
-gem 'rails', '3.2.8'
+gem 'rails', '3.2.9'
 gem 'pg'
 gem 'bcrypt-ruby'
 gem 'rails_admin'
@@ -29,7 +29,9 @@ gem 'kaminari'
 # in production environments by default.
 group :assets do
   gem 'font-awesome-sass-rails'
+  gem 'therubyracer'
   gem 'sass-rails'
+  gem 'less-rails'
   gem 'coffee-rails'
   gem 'uglifier'
 end
