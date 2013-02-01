@@ -1,4 +1,5 @@
 require 'bundler/capistrano'
+require 'capistrano/maintenance'
 require 'sidekiq/capistrano'
 require 'new_relic/recipes'
 require 'thinking_sphinx/deploy/capistrano'

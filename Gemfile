@@ -8,6 +8,7 @@ gem 'rails_admin'
 gem 'puma'
 
 gem 'capistrano'
+gem 'capistrano-maintenance'
 gem 'newrelic_rpm'
 gem 'newrelic-redis'
 
