@@ -6,7 +6,7 @@ require 'thinking_sphinx/deploy/capistrano'
 
 set :application, 'goodbre.ws'
 
-server '74.207.230.240', :web, :app, :db, :primary => true
+server '192.81.210.163', :web, :app, :db, :primary => true
 
 set :repository,  'git@github.com:davidcelis/goodbre.ws.git'
 set :branch, 'master'
@@ -85,9 +85,9 @@ namespace :sphinx do
 end
 
 
-after 'deploy:update_code', 'deploy:migrate'
-before 'deploy:update_code', 'thinking_sphinx:stop'
-after 'deploy:update_code', 'thinking_sphinx:start'
-after 'deploy:finalize_update', 'sphinx:symlink_indexes'
-after 'deploy', 'deploy:cleanup'
-after 'deploy:update', 'newrelic:notice_deployment'
+after  'deploy:update_code',     'deploy:migrate'
+before 'deploy:update_code',     'thinking_sphinx:stop'
+after  'deploy:update_code',     'thinking_sphinx:start'
+after  'deploy:finalize_update', 'sphinx:symlink_indexes'
+after  'deploy',                 'deploy:cleanup'
+after  'deploy:update',          'newrelic:notice_deployment'
