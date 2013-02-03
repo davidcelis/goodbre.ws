@@ -1,6 +1,7 @@
 source 'https://rubygems.org'
 
 gem 'thinking-sphinx', :require => 'thinking_sphinx'
+gem 'mysql2' # Required for thinking-sphinx, even when using PostgreSQL
 gem 'rails', '3.2.11'
 gem 'pg'
 gem 'bcrypt-ruby'
