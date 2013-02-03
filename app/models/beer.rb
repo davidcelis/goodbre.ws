@@ -5,15 +5,6 @@ class Beer < ActiveRecord::Base
 
   validates_presence_of :name
 
-  # Sphinx
-  define_index do
-    indexes :name
-    indexes :description
-
-    indexes brewery(:name), :as => :brewery
-    indexes style(:name), :as => :style
-  end
-
   def self.paginate(options = {})
     page(options[:page]).per(options[:per_page])
   end

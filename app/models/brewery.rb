@@ -6,12 +6,6 @@ class Brewery < ActiveRecord::Base
   before_create :set_permalink
   validates_presence_of :name
 
-  # Sphinx
-  define_index do
-    indexes :name
-    indexes :description
-  end
-
   def to_param
     self.permalink
   end

@@ -18,11 +18,6 @@ class User < ActiveRecord::Base
   validates_uniqueness_of :email, :case_sensitive => false, :message => 'is already in use'
   validates_presence_of :email
 
-  # Sphinx
-  define_index do
-    indexes :username
-  end
-
   def to_param
     username.parameterize
   end
