@@ -27,7 +27,7 @@ set :default_environment, {
 namespace :deploy do
   desc 'Start puma server'
   task :start, :roles => :app, :except => { :no_release => true } do
-    run "cd #{current_path} && NEWRELIC_DISPATCHER=puma bundle exec puma -C config/puma.rb --control unix:///tmp/pumactl.sock >> #{shared_path}/log/puma-production.log 2>&1 &", :pty => false
+    run "cd #{current_path} && NEWRELIC_DISPATCHER=puma bundle exec puma -C config/puma.rb --control unix://#{shared_path}/pumactl.sock >> #{shared_path}/log/puma-production.log 2>&1 &", :pty => false
   end
 
   desc 'Stop puma server'
