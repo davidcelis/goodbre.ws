@@ -21,7 +21,7 @@ ssh_options[:forward_agent] = true
 default_run_options[:pty] = true
 
 set :default_environment, {
-  'PATH' => "/home/deploy/.rbenv/shims:/home/deploy/.rbenv/bin:$PATH"
+  'PATH' => "/home/david/.rbenv/shims:/home/david/.rbenv/bin:$PATH"
 }
 
 namespace :deploy do
