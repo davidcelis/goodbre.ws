@@ -6,7 +6,6 @@ Goodbrews::Application.routes.draw do
   constraints constraint do
     require 'sidekiq/web'
     mount Sidekiq::Web => '/sidekiq'
-    mount RailsAdmin::Engine => '/admin', :as => 'rails_admin'
   end
 
   resource :account, :controller => :account, :except => :show do

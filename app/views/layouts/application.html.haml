@@ -5,6 +5,8 @@
     %meta{:charset => 'utf-8'}
     %title goodbre.ws
     = stylesheet_link_tag    'application', :media => 'all'
+    /[if lt IE 8]
+      = stylesheet_link_tag "font-awesome-ie7.min.css", media: "all"
     = csrf_meta_tags
     = favicon_link_tag 'favicon.png'
     = analytics_init if Rails.env.production?

@@ -1,7 +1,7 @@
 %ul.nav.nav-tabs
   %li#beers{ :class => active == 'beers' ? 'active' : '' }
     %a{ :href => beers_search_path(:q => query) }
-      %i.icon-glass
+      %i.icon-beer
       Beers
   %li#breweries{ :class => active == 'breweries' ? 'active' : '' }
     %a{ :href => breweries_search_path(:q => query) }

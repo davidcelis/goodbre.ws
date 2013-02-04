@@ -7,7 +7,6 @@ gem 'haml'
 gem 'recommendable', :github => 'davidcelis/recommendable'
 
 gem 'bcrypt-ruby', '~> 3.0.0'
-gem 'rails_admin'
 gem 'capistrano'
 gem 'capistrano-maintenance'
 
@@ -35,7 +34,7 @@ gem 'jquery-rails'
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do
-  gem 'font-awesome-sass-rails'
+  gem 'font-awesome-rails'
   gem 'libv8', '~> 3.11.8'
   gem 'therubyracer'
   gem 'sass-rails'

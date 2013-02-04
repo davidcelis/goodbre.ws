@@ -1,7 +1,7 @@
 %ul.nav.nav-tabs
   %li#beers-tab{ :class => active == 'show' ? 'active' : '' }
     %a{ :href => brewery_path(brewery) }
-      %i.icon-glass
+      %i.icon-beer
       Beers (#{brewery.beers.where('discontinued IS NOT TRUE').count})
   %li#discontinued-tab{ :class => active == 'discontinued' ? 'active' : '' }
     %a{ :href => discontinued_brewery_path(brewery) }
