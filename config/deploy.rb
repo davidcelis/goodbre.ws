@@ -2,7 +2,7 @@ require 'bundler/capistrano'
 require 'capistrano/maintenance'
 require 'sidekiq/capistrano'
 require 'new_relic/recipes'
-require 'thinking_sphinx/deploy/capistrano'
+require 'thinking_sphinx/capistrano'
 
 set :application, 'goodbre.ws'
 
@@ -77,17 +77,6 @@ namespace :deploy do
   before "deploy", "deploy:check_revision"
 end
 
-namespace :sphinx do
-  desc "Symlink Sphinx indexes"
-  task :symlink_indexes, :roles => [:app] do
-    run "ln -nfs #{shared_path}/db/sphinx #{release_path}/db/sphinx"
-  end
-end
-
-
 after  'deploy:update_code',     'deploy:migrate'
-before 'deploy:update_code',     'thinking_sphinx:stop'
-after  'deploy:update_code',     'thinking_sphinx:start'
-after  'deploy:finalize_update', 'sphinx:symlink_indexes'
-after  'deploy',                 'deploy:cleanup'
 after  'deploy:update',          'newrelic:notice_deployment'
+after  'deploy',                 'deploy:cleanup'
