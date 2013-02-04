@@ -274,7 +274,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  bcrypt-ruby
+  bcrypt-ruby (~> 3.0.0)
   capistrano
   capistrano-maintenance
   coffee-rails
@@ -283,7 +283,7 @@ DEPENDENCIES
   gravatar_image_tag
   haml
   jquery-rails
-  kaminari
+  kaminari (~> 0.14.0)
   less-rails
   libv8 (~> 3.11.8)
   miniskirt
@@ -292,20 +292,20 @@ DEPENDENCIES
   mysql2 (= 0.3.12b4)
   newrelic-redis
   newrelic_rpm
-  pg
+  pg (~> 0.14.1)
   pry-coolline
   pry-rails
-  puma
+  puma (~> 1.6.0)
   quiet_assets
   rails (= 3.2.11)
   rails_admin
   recommendable!
   sass-rails
-  sidekiq
-  sidekiq-unique-jobs
+  sidekiq (~> 2.7.0)
+  sidekiq-unique-jobs (~> 2.3.0)
   sinatra
   slim (<= 1.3.0)
   therubyracer
   thinking-sphinx (~> 3.0.0)
-  twitter-bootstrap-rails
+  twitter-bootstrap-rails (~> 2.2.0)
   uglifier

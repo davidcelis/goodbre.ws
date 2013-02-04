@@ -30,10 +30,10 @@
 function fnPjax(selector, container, options) {
   var context = this
   return this.on('click.pjax', selector, function(event) {
-    options = optionsFor(container, options)
-    if (!options.container)
-      options.container = $(this).attr('data-pjax') || context
-    handleClick(event, options)
+    var opts = $.extend({}, optionsFor(container, options))
+    if (!opts.container)
+      opts.container = $(this).attr('data-pjax') || context
+    handleClick(event, opts)
   })
 }
 
@@ -66,7 +66,7 @@ function handleClick(event, container, options) {
 
   // Middle click, cmd click, and ctrl click should open
   // links in a new tab as normal.
-  if ( event.which > 1 || event.metaKey || event.ctrlKey )
+  if ( event.which > 1 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey )
     return
 
   // Ignore cross origin links
@@ -123,8 +123,7 @@ function handleSubmit(event, container, options) {
     data: $(form).serializeArray(),
     container: $(form).attr('data-pjax'),
     target: form,
-    fragment: null,
-    timeout: 0
+    fragment: null
   }
 
   pjax($.extend({}, defaults, options))
@@ -186,6 +185,12 @@ function pjax(options) {
       settings.timeout = 0
     }
 
+    xhr.setRequestHeader('X-PJAX', 'true')
+    xhr.setRequestHeader('X-PJAX-Container', context.selector)
+
+    if (!fire('pjax:beforeSend', [xhr, settings]))
+      return false
+
     if (settings.timeout > 0) {
       timeoutTimer = setTimeout(function() {
         if (fire('pjax:timeout', [xhr, options]))
@@ -195,14 +200,6 @@ function pjax(options) {
       // Clear timeout setting so jquerys internal timeout isn't invoked
       settings.timeout = 0
     }
-
-    xhr.setRequestHeader('X-PJAX', 'true')
-    xhr.setRequestHeader('X-PJAX-Container', context.selector)
-
-    var result
-
-    if (!fire('pjax:beforeSend', [xhr, settings]))
-      return false
 
     options.requestUrl = parseURL(settings.url).href
   }
@@ -220,8 +217,9 @@ function pjax(options) {
     var container = extractContainer("", xhr, options)
 
     var allowed = fire('pjax:error', [xhr, textStatus, errorThrown, options])
-    if (textStatus !== 'abort' && allowed)
+    if (options.type == 'GET' && textStatus !== 'abort' && allowed) {
       locationReplace(container.url)
+    }
   }
 
   options.success = function(data, status, xhr) {
@@ -364,6 +362,11 @@ function onPjaxPopstate(event) {
         // Cache current container before replacement and inform the
         // cache which direction the history shifted.
         cachePop(direction, pjax.state.id, container.clone().contents())
+      } else {
+        // Page was reloaded but we have an existing history entry.
+        // Set it to our initial state.
+        pjax.state = state;
+        return;
       }
 
       var popstateEvent = $.Event('pjax:popstate', {
@@ -545,6 +548,10 @@ function findAll(elems, selector) {
   return elems.filter(selector).add(elems.find(selector));
 }
 
+function parseHTML(html) {
+  return $.parseHTML(html, document, true)
+}
+
 // Internal: Extracts container and metadata from response.
 //
 // 1. Extracts X-PJAX-URL header if set
@@ -565,10 +572,10 @@ function extractContainer(data, xhr, options) {
 
   // Attempt to parse response html into elements
   if (/<html/i.test(data)) {
-    var $head = $(data.match(/<head[^>]*>([\s\S.]*)<\/head>/i)[0])
-    var $body = $(data.match(/<body[^>]*>([\s\S.]*)<\/body>/i)[0])
+    var $head = $(parseHTML(data.match(/<head[^>]*>([\s\S.]*)<\/head>/i)[0]))
+    var $body = $(parseHTML(data.match(/<body[^>]*>([\s\S.]*)<\/body>/i)[0]))
   } else {
-    var $head = $body = $(data)
+    var $head = $body = $(parseHTML(data))
   }
 
   // If response data is empty, return fast
@@ -716,7 +723,8 @@ function disable() {
   $.pjax.disable = $.noop
   $.pjax.click = $.noop
   $.pjax.submit = $.noop
-  $.pjax.reload = window.location.reload
+  $.pjax.reload = function() { window.location.reload() }
+
   $(window).unbind('popstate.pjax', onPjaxPopstate)
 }
 
