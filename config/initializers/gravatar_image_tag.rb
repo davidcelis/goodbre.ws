@@ -1,5 +1,5 @@
 GravatarImageTag.configure do |config|
-  config.default_image           = 'http://goodbre.ws/assets/user.png'
+  config.default_image           = 'mm'
   config.filetype                = 'png'
   config.include_size_attributes = true
   config.rating                  = 'G'
