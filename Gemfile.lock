@@ -8,8 +8,8 @@ GIT
       redis (>= 2.2.0)
 
 GIT
-  remote: git://github.com/davidcelis/thinking-sphinx.git
-  revision: 84605c9905f010cf7c0e9a68b61df9faab7c1d05
+  remote: git://github.com/pat/thinking-sphinx.git
+  revision: 9e847599f01be1bfb6ef960e8eb606d9d5e33da8
   specs:
     thinking-sphinx (3.0.1)
       activerecord (>= 3.1.0)
@@ -124,7 +124,7 @@ GEM
       treetop (~> 1.4.8)
     method_source (0.8.1)
     middleware (0.1.0)
-    mime-types (1.19)
+    mime-types (1.20.1)
     miniskirt (1.2.1)
       activesupport
     minitest (4.5.0)

@@ -13,7 +13,7 @@ gem 'capistrano-maintenance'
 
 # Required for thinking-sphinx, even when using PostgreSQL
 gem 'mysql2', '0.3.12b4'
-gem 'thinking-sphinx', :github => 'davidcelis/thinking-sphinx'
+gem 'thinking-sphinx', :github => 'pat/thinking-sphinx'
 
 gem 'sidekiq', '~> 2.7.0'
 gem 'sidekiq-unique-jobs', '~> 2.3.0'
