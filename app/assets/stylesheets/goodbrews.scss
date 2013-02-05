@@ -3,7 +3,8 @@
 body {
   font-family: 'Century Gothic', sans-serif !important;
   font-size: 12px;
-  background-color: $green;
+  //background-color: $green;
+  background: url('/assets/noise.png') repeat repeat;
 }
 
 h1, h2, h3, h4, h5, h6 {
