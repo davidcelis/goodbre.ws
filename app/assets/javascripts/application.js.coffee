@@ -28,6 +28,10 @@ setEventsForPjax = ->
   $('.alert').alert()
   $('input, textarea').placeholder() if typeof($().placeholder) == typeof(Function)
 
+  $('#note-modal').on('hidden', ->
+    $(this).data('modal').$element.removeData();
+  )
+
   $('.beer-actions button').tooltip
     html: false
     delay:
@@ -41,6 +45,11 @@ setEventsForPjax = ->
     id     = $(this).attr('data-id')
 
     switch action
+      when 'note'
+        $('#note-modal').modal
+          backdrop: 'static'
+          keyboard: true
+          remote:   "/beers/#{id}/note"
       when 'like'
         $.ajax("/beers/#{id}/like",
           type: 'POST'

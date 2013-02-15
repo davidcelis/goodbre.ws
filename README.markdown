@@ -4,9 +4,22 @@ Sit back and have a beer.
 
 goodbre.ws is a Rails application powered by [Recommendable][recommendable] to provide recommendations for beer.
 
-_NOTE: Yes, goodbre.ws is temporarily down as I rewrite the site. If you want to follow the rewrite, check it out at [goodbrews/goodbre.ws][rewrite]._
+## Setup
 
-If you would like to help me keep goodbre.ws up and running and/or further the rewrite, please consider a small Gittip to [support my open source software][gittip]. I pay for hosting out-of-pocket, and all work I do on goodbre.ws is in my spare time and, so far, on my own. Thank you!
+### Requirements
+
+* Ruby 1.9.x
+* PostgreSQL (`brew install postgresql`)
+* Redis (`brew install redis`)
+
+### Get up and running
+
+1. `bundle install`
+2. `mv config/database.yml.example config/database.yml`
+3. Edit `config/database.yml` to contain your PostgreSQL credentials
+4. `mv config/initializers/secret_token.example.rb config/initializers/secret_token.rb`
+5. `rake db:setup`
+6. `rails s puma`
 
 Contributing to goodbre.ws
 --------------------------

@@ -4,6 +4,7 @@ module ApplicationHelper
     dislikes = current_user.dislikes?(beer)
     hides = current_user.hides?(beer)
     bookmarks = current_user.bookmarks?(beer)
+    notes = Note.where(:user_id => current_user.id, :beer_id => beer.id).exists? rescue nil
 
     if likes
       klass  = 'btn like-button btn-success'
@@ -75,6 +76,18 @@ module ApplicationHelper
 </button>
     BUTTON
 
-    [like_button, dislike_button, bookmark_button, hide_button].join("\n")
+    if notes
+      klass = 'btn-info'
+    else
+      klass = ''
+    end
+
+    note_button = <<-BUTTON
+<button class='btn note-button #{klass}' data-id='#{beer.id}' data-action='note' data-original-title='Notes'>
+  <i class='icon-pencil'></i>
+</button>
+    BUTTON
+
+    [like_button, dislike_button, bookmark_button, hide_button, note_button].join("\n")
   end
 end

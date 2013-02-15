@@ -1,13 +1,17 @@
 class Brewery < ActiveRecord::Base
-  attr_accessible :description, :name, :permalink, :website
-  has_many :beers
+  include PgSearch
+
+  pg_search_scope :search, against: [:name, :description]
+
+  attr_accessible :description, :name, :slug, :website
+  has_and_belongs_to_many :beers
   has_many :temp_beers
 
-  before_create :set_permalink
+  before_create :set_slug
   validates_presence_of :name
 
   def to_param
-    self.permalink
+    self.slug
   end
 
   def to_indexed_json
@@ -15,7 +19,7 @@ class Brewery < ActiveRecord::Base
   end
 
   def self.from_param(param)
-    self.where(:permalink => param).first
+    self.where(:slug => param).first
   end
 
   def self.paginate(options = {})
@@ -24,7 +28,7 @@ class Brewery < ActiveRecord::Base
 
   private
 
-  def set_permalink
-    self.permalink = self.name.parameterize
+  def set_slug
+    self.slug = self.name.parameterize
   end
 end

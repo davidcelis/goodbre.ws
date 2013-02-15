@@ -40,3 +40,5 @@ Goodbrews::Application.configure do
     :port => 3000
   }
 end
+
+ActiveSupport::Dependencies.log_activity = true

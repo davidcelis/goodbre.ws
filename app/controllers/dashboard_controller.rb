@@ -3,14 +3,14 @@ class DashboardController < ApplicationController
 
   # GET /dashboard
   def index
-    @beers = Beer.includes(:brewery, :style).top(100)
+    @beers = Beer.includes(:breweries, :style).top(100)
     @beers = Kaminari.paginate_array(@beers).page(params[:page]).per(25)
     render :dashboard
   end
 
   # GET /dashboard/recommendations
   def recommendations
-    @beers = current_user.recommended_beers.includes(:brewery, :style).page(params[:page])
+    @beers = current_user.recommended_beers.includes(:breweries, :style).page(params[:page])
 
     if @beers.empty?
       if current_user.rated_anything?
@@ -25,21 +25,21 @@ class DashboardController < ApplicationController
 
   # GET /dashboard/likes
   def likes
-    @beers = current_user.liked_beers.includes(:brewery, :style).page(params[:page])
+    @beers = current_user.liked_beers.includes(:breweries, :style).page(params[:page])
     @message = "You haven't liked any beers yet. Search for a beer to like using the bar at the top!" if @beers.empty?
     render :dashboard
   end
 
   # GET /dashboard/dislikes
   def dislikes
-    @beers = current_user.disliked_beers.includes(:brewery, :style).page(params[:page])
+    @beers = current_user.disliked_beers.includes(:breweries, :style).page(params[:page])
     @message = "Disliking beers is important too! Search for a beer you don't like using the bar at the top." if @beers.empty?
     render :dashboard
   end
 
   # GET /dashboard/fridge
   def fridge
-    @beers = current_user.bookmarked_beers.includes(:brewery, :style).page(params[:page])
+    @beers = current_user.bookmarked_beers.includes(:breweries, :style).page(params[:page])
     @message = "Click the bookmark on beers you're planning to try next, especially if you've already got 'em!" if @beers.empty?
     render :dashboard
   end

@@ -12,15 +12,12 @@ Recommendable.configure do |config|
   # refreshed after they like/dislike an item
   config.auto_enqueue = true
 
-  # The name of the queue that background jobs will be placed in
-  config.queue_name = :recommendable
-
-  # The number of nearest neighbors (k-NN) to check when updating
+  # The number of nearest/furthest neighbors (k-NN) to check when updating
   # recommendations for a user. Set to `nil` if you want to check all
   # other users as opposed to a subset of the nearest ones.
   config.nearest_neighbors = 100
-
   config.furthest_neighbors = 100
 
+  # The number of recommendations to store for each user.
   config.recommendations_to_store = 100
 end

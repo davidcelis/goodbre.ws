@@ -1,0 +1,15 @@
+defaults: &defaults
+  adapter: postgresql
+  encoding: unicode
+  pool: 5
+  username: YOUR_POSTGRES_ROLE
+  password:
+
+development:
+  <<: *defaults
+  database: goodbrews_development
+
+test:
+  <<: *defaults
+  database: goodbrews_test
+

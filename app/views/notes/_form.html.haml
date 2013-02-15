@@ -1,0 +1,6 @@
+= form_tag((note_beer_path(@beer.id) rescue '/beers/1/note'), :method => :put, :remote => true, :style => 'margin-bottom: 0;') do
+  = text_area_tag :note, (@note.text rescue nil), :placeholder => 'Enter some personal notes...', :style => 'width: 516px; height: 154px;'
+
+  %div{ :style => 'text-align:center;'}
+    %a.btn{ :'data-dismiss' => 'modal', :'aria-hidden' => true } Close
+    %button.btn.btn-primary Save changes

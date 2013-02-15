@@ -12,8 +12,8 @@
         %tr
           %td= beer.name
           %td= beer.abv
-          %td= beer.style.name
-          %td= link_to beer.brewery.name, brewery_path(beer.brewery.permalink)
+          %td= beer.style.try(:name) || "Unknown"
+          %td= beer.breweries.map { |brewery| link_to brewery.name, brewery_path(brewery.slug) }.join(", ").html_safe
           - if signed_in?
             %td.beer-buttons
               .btn-group.beer-actions
@@ -21,3 +21,11 @@
 
     .center
       = paginate beers unless params[:action] == 'welcome'
+
+#note-modal.modal.hide.fade
+  .modal-header
+    %button.close{ :type => 'button', :'data-dismiss' => 'modal', :'aria-hidden' => true } ×
+    %h3#modal-label Notes on this beer
+  .modal-body
+    - # FIXME: this modal should be AJAXed in
+    = # render :partial => 'notes/form'

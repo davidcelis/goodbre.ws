@@ -1,4 +1,8 @@
 class User < ActiveRecord::Base
+  include PgSearch
+
+  pg_search_scope :search, against: :username
+
   attr_accessible :email, :username, :password, :password_confirmation
   has_secure_password
   recommends :beers

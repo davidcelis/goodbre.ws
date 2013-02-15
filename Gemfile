@@ -4,18 +4,17 @@ gem 'rails', '3.2.13'
 gem 'pg', '~> 0.14.1'
 gem 'puma', '~> 1.6.0'
 gem 'haml'
-gem 'recommendable', :github => 'davidcelis/recommendable'
 
 gem 'bcrypt-ruby', '~> 3.0.0'
 gem 'capistrano'
 gem 'capistrano-maintenance'
 
-# Required for thinking-sphinx, even when using PostgreSQL
-gem 'mysql2', '0.3.12b4'
-gem 'thinking-sphinx', :github => 'pat/thinking-sphinx'
+gem 'pg_search'
 
 gem 'sidekiq', '~> 2.7.0'
 gem 'sidekiq-unique-jobs', '~> 2.3.0'
+
+gem 'recommendable', :github => 'davidcelis/recommendable'
 
 # For the sidekiq web interface
 gem 'sinatra', :require => nil
@@ -35,8 +34,7 @@ gem 'jquery-rails'
 # in production environments by default.
 group :assets do
   gem 'font-awesome-rails'
-  gem 'libv8', '~> 3.11.8'
-  gem 'therubyracer'
+  gem 'therubyracer', github: 'cowboyd/therubyracer'
   gem 'sass-rails'
   gem 'less-rails'
   gem 'coffee-rails'
@@ -44,10 +42,11 @@ group :assets do
 end
 
 group :development, :test do
-  gem 'minitest-rails'
-  gem 'minitest-rails-capybara'
-  gem 'miniskirt'
-  gem 'pry-rails'
-  gem 'pry-coolline'
+  gem 'pry-suite'
   gem 'quiet_assets'
+end
+
+group :test do
+  gem 'rspec-rails'
+  gem 'minifacture'
 end
