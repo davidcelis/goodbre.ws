@@ -5,6 +5,7 @@ gem 'pg', '~> 0.14.1'
 gem 'puma', '~> 1.6.0'
 gem 'haml'
 gem 'recommendable', :github => 'davidcelis/recommendable'
+gem 'brewhouse', :path => '/Users/david/Documents/Code/brewhouse'
 
 gem 'bcrypt-ruby', '~> 3.0.0'
 gem 'capistrano'

@@ -18,6 +18,11 @@ GIT
       middleware (>= 0.1.0)
       riddle (>= 1.5.4)
 
+PATH
+  remote: /Users/david/Documents/Code/brewhouse
+  specs:
+    brewhouse (0.0.0)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -255,6 +260,7 @@ PLATFORMS
 
 DEPENDENCIES
   bcrypt-ruby (~> 3.0.0)
+  brewhouse!
   capistrano
   capistrano-maintenance
   coffee-rails
