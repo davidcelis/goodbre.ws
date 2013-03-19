@@ -18,5 +18,9 @@ Recommendable.configure do |config|
   # The number of nearest neighbors (k-NN) to check when updating
   # recommendations for a user. Set to `nil` if you want to check all
   # other users as opposed to a subset of the nearest ones.
-  config.nearest_neighbors = 500
+  config.nearest_neighbors = 100
+
+  config.furthest_neighbors = 100
+
+  config.recommendations_to_store = 100
 end
