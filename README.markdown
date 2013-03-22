@@ -4,6 +4,10 @@ Sit back and have a beer.
 
 goodbre.ws is a Rails application powered by [Recommendable][recommendable] to provide recommendations for beer.
 
+_NOTE: Yes, goodbre.ws is temporarily down as I rewrite the site. If you want to follow the rewrite, check it out at [goodbrews/goodbre.ws][rewrite]._
+
+If you would like to help me keep goodbre.ws up and running and/or further the rewrite, please consider a small Gittip to [support my open source software][gittip]. I pay for hosting out-of-pocket, and all work I do on goodbre.ws is in my spare time and, so far, on my own. Thank you!
+
 Contributing to goodbre.ws
 --------------------------
 
@@ -34,3 +38,5 @@ further details.
 [pull requests]: http://help.github.com/pull-requests/
 [recommendable]: http://davidcelis.github.com/recommendable/
 [documentation]: http://rubydoc.info/gems/recommendable/frames
+[gittip]: https://gittip.com/davidcelis/
+[rewrite]: https://github.com/goodbrews/goodbre.ws/
