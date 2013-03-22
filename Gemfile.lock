@@ -1,8 +1,8 @@
 GIT
   remote: git://github.com/davidcelis/recommendable.git
-  revision: 0f8ced0d75dcc46bc4f75de7c76373430bed2caf
+  revision: 172ddd62c5932c8ad1c0e12c38dec4ed81ed015d
   specs:
-    recommendable (2.0.4.20130313)
+    recommendable (2.1.0.1)
       activesupport (>= 3.0.0)
       hooks (>= 0.2.1)
       redis (>= 2.2.0)
